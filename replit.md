@@ -16,6 +16,10 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 - **API codegen**: Orval (from OpenAPI spec)
 - **Build**: esbuild (CJS bundle)
 
+## Artifacts
+
+- **belfius-app** (`artifacts/belfius-app/`) — Vanilla HTML/CSS/JS Belfius banking UI simulation. Static files: `index.html`, `style.css`, `script.js` served by Vite. Demo login: `Andrea33` / `Moi12`. Transfers are intentionally blocked (account-unlock simulation).
+
 ## Key Commands
 
 - `pnpm run typecheck` — full typecheck across all packages

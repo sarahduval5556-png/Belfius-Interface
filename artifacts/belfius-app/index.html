@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Belfius — Banque en ligne</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <!-- ============== LOGIN PAGE ============== -->
+    <section id="login-page" class="page active">
+      <div class="login-container">
+        <div class="login-header">
+          <div class="logo-block">
+            <div class="logo-square">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <h1 class="brand-name">Belfius</h1>
+          </div>
+          <p class="brand-tagline">Meaningful Banking</p>
+        </div>
+
+        <div class="login-card">
+          <h2 class="login-title">Connexion</h2>
+          <p class="login-subtitle">Accédez à votre espace bancaire sécurisé</p>
+
+          <form id="login-form" class="login-form" autocomplete="off">
+            <div class="field-group">
+              <label for="username">Identifiant</label>
+              <div class="input-wrap">
+                <i class="fa-regular fa-user input-icon"></i>
+                <input type="text" id="username" name="username" placeholder="Votre identifiant" required />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="password">Mot de passe</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" id="password" name="password" placeholder="••••••••" required />
+                <button type="button" class="toggle-pwd" id="toggle-pwd" aria-label="Afficher le mot de passe">
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="remember-row">
+              <span class="remember-label">Se souvenir de moi</span>
+              <button type="button" id="remember-toggle" class="toggle-switch" aria-pressed="false">
+                <span class="toggle-knob"></span>
+              </button>
+            </div>
+
+            <div id="login-error" class="login-error" hidden>
+              <i class="fa-solid fa-circle-exclamation"></i>
+              <span>Identifiant ou mot de passe incorrect.</span>
+            </div>
+
+            <button type="submit" class="btn-primary">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i>
+              Se connecter
+            </button>
+          </form>
+
+          <div class="login-links">
+            <a href="#" class="link">Mot de passe oublié ?</a>
+            <a href="#" class="link">Identifiant oublié ?</a>
+            <a href="#" class="link link-strong">Ouvrir un compte <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <p class="login-footer">
+          <i class="fa-solid fa-shield-halved"></i>
+          Connexion sécurisée — © Belfius Banque SA
+        </p>
+      </div>
+    </section>
+
+    <!-- ============== LOADING SCREEN ============== -->
+    <section id="loading-page" class="page loading-page">
+      <div class="loading-content">
+        <div class="loading-logo">
+          <div class="logo-square big">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <h1 class="brand-name big">Belfius</h1>
+        </div>
+        <div class="spinner"></div>
+        <p class="loading-text">Chargement de votre compte…</p>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+      </div>
+    </section>
+
+    <!-- ============== APP (DASHBOARD) ============== -->
+    <section id="app-page" class="page app-page">
+      <!-- Top bar -->
+      <header class="app-header">
+        <div class="header-left">
+          <div class="logo-square small"><i class="fa-solid fa-building-columns"></i></div>
+          <div>
+            <p class="hello">Bonjour,</p>
+            <p class="user-name">Andrea Legrand</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i>
+            <span class="badge-dot"></span>
+          </button>
+          <button class="icon-btn" aria-label="Déconnexion" id="logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
+        </div>
+      </header>
+
+      <main class="app-main">
+        <!-- ===== HOME ===== -->
+        <div class="view active" data-view="home">
+          <div class="status-banner">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <div>
+              <p class="status-title">Compte en cours de déblocage</p>
+              <p class="status-desc">Votre compte est temporairement restreint. Certaines opérations sont indisponibles.</p>
+            </div>
+          </div>
+
+          <div class="balance-card">
+            <div class="balance-top">
+              <div>
+                <p class="balance-label">Solde disponible</p>
+                <p class="account-iban">BE68 5390 0754 7034 · Compte courant</p>
+              </div>
+              <button class="eye-btn" id="eye-btn" aria-label="Masquer le solde">
+                <i class="fa-regular fa-eye"></i>
+              </button>
+            </div>
+            <p class="balance-amount" id="balance-amount">1 750 000,00 €</p>
+            <div class="balance-meta">
+              <span><i class="fa-solid fa-arrow-trend-up"></i> +0,00 % ce mois</span>
+              <span class="dot">•</span>
+              <span>Mise à jour à l'instant</span>
+            </div>
+          </div>
+
+          <div class="quick-actions">
+            <button class="quick-action" data-go="transfer">
+              <span class="qa-icon"><i class="fa-solid fa-paper-plane"></i></span>
+              <span>Virement</span>
+            </button>
+            <button class="quick-action">
+              <span class="qa-icon"><i class="fa-solid fa-mobile-screen"></i></span>
+              <span>Recharger</span>
+            </button>
+            <button class="quick-action">
+              <span class="qa-icon"><i class="fa-solid fa-receipt"></i></span>
+              <span>Payer</span>
+            </button>
+            <button class="quick-action">
+              <span class="qa-icon"><i class="fa-solid fa-piggy-bank"></i></span>
+              <span>Épargner</span>
+            </button>
+          </div>
+
+          <div class="section-head">
+            <h3>Transactions récentes</h3>
+            <a href="#" class="link-sm">Tout voir</a>
+          </div>
+
+          <ul class="tx-list">
+            <li class="tx">
+              <div class="tx-icon income"><i class="fa-solid fa-arrow-down"></i></div>
+              <div class="tx-info">
+                <p class="tx-name">Virement entrant</p>
+                <p class="tx-date">Aujourd'hui · 09:14</p>
+              </div>
+              <p class="tx-amount income">+1 750 000,00 €</p>
+            </li>
+            <li class="tx">
+              <div class="tx-icon"><i class="fa-solid fa-bolt"></i></div>
+              <div class="tx-info">
+                <p class="tx-name">Engie Electrabel</p>
+                <p class="tx-date">Hier · 18:42</p>
+              </div>
+              <p class="tx-amount">−84,30 €</p>
+            </li>
+            <li class="tx">
+              <div class="tx-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+              <div class="tx-info">
+                <p class="tx-name">Delhaize Bruxelles</p>
+                <p class="tx-date">26 avr. · 12:08</p>
+              </div>
+              <p class="tx-amount">−42,17 €</p>
+            </li>
+            <li class="tx">
+              <div class="tx-icon"><i class="fa-solid fa-mug-hot"></i></div>
+              <div class="tx-info">
+                <p class="tx-name">Le Pain Quotidien</p>
+                <p class="tx-date">25 avr. · 08:31</p>
+              </div>
+              <p class="tx-amount">−9,80 €</p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ===== ACCOUNTS ===== -->
+        <div class="view" data-view="accounts">
+          <h2 class="view-title">Mes comptes</h2>
+
+          <div class="bank-card">
+            <div class="card-top">
+              <span class="card-bank">Belfius</span>
+              <span class="card-chip"><i class="fa-solid fa-wifi"></i></span>
+            </div>
+            <div class="card-chip-row">
+              <div class="card-chip-img"></div>
+            </div>
+            <p class="card-number">2345&nbsp;&nbsp;6780&nbsp;&nbsp;0000&nbsp;&nbsp;0000</p>
+            <div class="card-bottom">
+              <div>
+                <p class="card-label">Titulaire</p>
+                <p class="card-value">ANDREA LEGRAND</p>
+              </div>
+              <div>
+                <p class="card-label">Expire</p>
+                <p class="card-value">09/29</p>
+              </div>
+              <div class="visa-logo">VISA</div>
+            </div>
+          </div>
+
+          <div class="account-list">
+            <div class="account-item">
+              <div class="acc-icon"><i class="fa-solid fa-wallet"></i></div>
+              <div class="acc-info">
+                <p class="acc-name">Compte courant</p>
+                <p class="acc-iban">BE68 5390 0754 7034</p>
+              </div>
+              <p class="acc-amount">1 750 000,00 €</p>
+            </div>
+            <div class="account-item">
+              <div class="acc-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+              <div class="acc-info">
+                <p class="acc-name">Compte épargne</p>
+                <p class="acc-iban">BE17 0689 0123 4567</p>
+              </div>
+              <p class="acc-amount">12 480,55 €</p>
+            </div>
+            <div class="account-item">
+              <div class="acc-icon"><i class="fa-solid fa-credit-card"></i></div>
+              <div class="acc-info">
+                <p class="acc-name">Carte Visa Classic</p>
+                <p class="acc-iban">2345 •••• •••• 0000</p>
+              </div>
+              <p class="acc-amount">−128,27 €</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== TRANSFER ===== -->
+        <div class="view" data-view="transfer">
+          <h2 class="view-title">Effectuer un virement</h2>
+
+          <form id="transfer-form" class="transfer-form" autocomplete="off">
+            <div class="field-group">
+              <label for="ben-name">Nom du bénéficiaire</label>
+              <div class="input-wrap">
+                <i class="fa-regular fa-user input-icon"></i>
+                <input type="text" id="ben-name" placeholder="Ex. : Jean Dupont" required />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="iban">IBAN</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-hashtag input-icon"></i>
+                <input type="text" id="iban" placeholder="BE.. / FR.. / DE.. / ..." required />
+              </div>
+              <p class="field-hint">Tous les IBAN sont acceptés (Belgique, Europe, international).</p>
+            </div>
+
+            <div class="field-group">
+              <label for="bic">BIC</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-globe input-icon"></i>
+                <input type="text" id="bic" placeholder="GKCCBEBB" required />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="amount">Montant</label>
+              <div class="input-wrap">
+                <i class="fa-solid fa-euro-sign input-icon"></i>
+                <input type="number" id="amount" placeholder="0,00" step="0.01" min="0" required />
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="comm">Communication (facultatif)</label>
+              <div class="input-wrap">
+                <i class="fa-regular fa-message input-icon"></i>
+                <input type="text" id="comm" placeholder="Référence ou message" />
+              </div>
+            </div>
+
+            <div id="transfer-error" class="transfer-error" hidden>
+              <i class="fa-solid fa-circle-xmark"></i>
+              <div>
+                <p class="te-title">Opération impossible</p>
+                <p class="te-desc">Compte en cours de déblocage. Veuillez réessayer ultérieurement.</p>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary btn-block">
+              <i class="fa-solid fa-paper-plane"></i>
+              Envoyer
+            </button>
+          </form>
+        </div>
+
+        <!-- ===== PROFILE ===== -->
+        <div class="view" data-view="profile">
+          <h2 class="view-title">Profil</h2>
+
+          <div class="profile-card">
+            <div class="avatar">AL</div>
+            <h3 class="profile-name">Andrea Legrand</h3>
+            <p class="profile-meta">Sexe : F · Cliente Belfius depuis 2018</p>
+            <span class="status-pill">
+              <span class="pill-dot"></span> Compte en cours de déblocage
+            </span>
+          </div>
+
+          <ul class="profile-list">
+            <li class="profile-row">
+              <span class="pr-icon"><i class="fa-regular fa-envelope"></i></span>
+              <div>
+                <p class="pr-label">E-mail</p>
+                <p class="pr-value">andrea.legrand@belfius-client.be</p>
+              </div>
+            </li>
+            <li class="profile-row">
+              <span class="pr-icon"><i class="fa-solid fa-phone"></i></span>
+              <div>
+                <p class="pr-label">Téléphone</p>
+                <p class="pr-value">+32 4 92 11 33 42</p>
+              </div>
+            </li>
+            <li class="profile-row">
+              <span class="pr-icon"><i class="fa-solid fa-location-dot"></i></span>
+              <div>
+                <p class="pr-label">Adresse</p>
+                <p class="pr-value">Avenue Louise 215, 1050 Bruxelles</p>
+              </div>
+            </li>
+            <li class="profile-row">
+              <span class="pr-icon"><i class="fa-solid fa-id-card"></i></span>
+              <div>
+                <p class="pr-label">N° client</p>
+                <p class="pr-value">CL-2018-336521</p>
+              </div>
+            </li>
+          </ul>
+
+          <button class="btn-outline" id="logout-btn-2">
+            <i class="fa-solid fa-right-from-bracket"></i> Se déconnecter
+          </button>
+        </div>
+      </main>
+
+      <!-- Bottom nav -->
+      <nav class="bottom-nav">
+        <button class="nav-item active" data-target="home">
+          <i class="fa-solid fa-house"></i>
+          <span>Accueil</span>
+        </button>
+        <button class="nav-item" data-target="accounts">
+          <i class="fa-regular fa-credit-card"></i>
+          <span>Comptes</span>
+        </button>
+        <button class="nav-item" data-target="transfer">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>Virement</span>
+        </button>
+        <button class="nav-item" data-target="profile">
+          <i class="fa-regular fa-user"></i>
+          <span>Vous</span>
+        </button>
+      </nav>
+    </section>
+
+    <script src="/script.js"></script>
+  </body>
+</html>

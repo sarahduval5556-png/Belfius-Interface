@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Belfius"
+version = "1.0.0"
+id = "artifacts/belfius-app"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23718
+
+[services.development]
+run = "pnpm --filter @workspace/belfius-app run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/belfius-app", "run", "build" ]
+publicDir = "artifacts/belfius-app/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23718"
+BASE_PATH = "/"
