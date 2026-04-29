@@ -13,13 +13,28 @@ function showPage(id) {
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
+const viewHistory = ["home"];
+
 function showView(name) {
   $$(".view").forEach((v) => v.classList.remove("active"));
   const target = document.querySelector(`.view[data-view="${name}"]`);
-  if (target) target.classList.add("active");
-  $$(".nav-item").forEach((n) => {
-    n.classList.toggle("active", n.dataset.target === name);
-  });
+  if (target) {
+    target.classList.add("active");
+    if (viewHistory[viewHistory.length - 1] !== name) viewHistory.push(name);
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function goBack() {
+  if (viewHistory.length > 1) {
+    viewHistory.pop();
+    const prev = viewHistory[viewHistory.length - 1];
+    $$(".view").forEach((v) => v.classList.remove("active"));
+    document.querySelector(`.view[data-view="${prev}"]`)?.classList.add("active");
+  } else {
+    showView("home");
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 /* ---------- Login form ---------- */
@@ -68,15 +83,17 @@ rememberToggle.addEventListener("click", () => {
   rememberToggle.setAttribute("aria-pressed", String(next));
 });
 
-/* ---------- Bottom nav ---------- */
-$$(".nav-item").forEach((btn) => {
-  btn.addEventListener("click", () => showView(btn.dataset.target));
-});
-
-/* Quick action buttons that navigate */
+/* ---------- Section card / menu navigation ---------- */
 $$("[data-go]").forEach((btn) => {
   btn.addEventListener("click", () => showView(btn.dataset.go));
 });
+$$("[data-menu-go]").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    closeAllDrawers();
+    showView(btn.dataset.menuGo);
+  });
+});
+$$("[data-back]").forEach((btn) => btn.addEventListener("click", goBack));
 
 /* ---------- Balance visibility ---------- */
 const eyeBtn = $("#eye-btn");
@@ -91,7 +108,7 @@ eyeBtn.addEventListener("click", () => {
   icon.classList.toggle("fa-eye-slash");
 });
 
-/* ---------- Transfer form (BLOCKED) ---------- */
+/* ---------- Transfer form (BLOCKED + notification trigger) ---------- */
 const transferForm = $("#transfer-form");
 const transferError = $("#transfer-error");
 
@@ -101,23 +118,158 @@ transferForm.addEventListener("submit", (e) => {
   transferError.scrollIntoView({ behavior: "smooth", block: "center" });
   transferForm.classList.add("shake");
   setTimeout(() => transferForm.classList.remove("shake"), 350);
+
+  // Trigger notification: bell badge + add transaction notification
+  triggerTransferNotification({
+    name: $("#ben-name").value.trim() || "—",
+    amount: $("#amount").value || "0,00",
+    iban: $("#iban").value.trim() || "—",
+  });
 });
 
-/* Hide the transfer error as user re-types */
 ["ben-name", "iban", "bic", "amount"].forEach((id) => {
   const el = document.getElementById(id);
   if (el) el.addEventListener("input", () => { transferError.hidden = true; });
 });
 
+/* ---------- Notification system ---------- */
+const bellBtn = $("#bell-btn");
+const bellDot = $("#bell-dot");
+const notifListTx = $("#notif-list-tx");
+
+function triggerTransferNotification({ name, amount, iban }) {
+  bellDot.hidden = false;
+
+  // Remove placeholder if present
+  notifListTx.querySelector(".notif-item.placeholder")?.remove();
+
+  const li = document.createElement("li");
+  li.className = "notif-item";
+  li.innerHTML = `
+    <div class="notif-icon"><i class="fa-solid fa-paper-plane"></i></div>
+    <div class="notif-body">
+      <p class="notif-title">Tentative de virement bloquée</p>
+      <p class="notif-text">Vers ${escapeHtml(name)} (${escapeHtml(iban)}) — ${escapeHtml(amount)} €</p>
+      <p class="notif-time">${formatNow()}</p>
+    </div>
+  `;
+  notifListTx.prepend(li);
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function formatNow() {
+  const d = new Date();
+  const hh = String(d.getHours()).padStart(2, "0");
+  const mm = String(d.getMinutes()).padStart(2, "0");
+  return `Aujourd'hui · ${hh}:${mm}`;
+}
+
+/* ---------- Drawers ---------- */
+const backdrop = $("#drawer-backdrop");
+const drawers = {
+  notif: $("#notif-drawer"),
+  search: $("#search-drawer"),
+  support: $("#support-drawer"),
+  menu: $("#menu-drawer"),
+};
+
+function openDrawer(key) {
+  closeAllDrawers();
+  backdrop.hidden = false;
+  drawers[key].hidden = false;
+  document.body.style.overflow = "hidden";
+}
+
+function closeAllDrawers() {
+  backdrop.hidden = true;
+  Object.values(drawers).forEach((d) => (d.hidden = true));
+  document.body.style.overflow = "";
+}
+
+bellBtn.addEventListener("click", () => {
+  openDrawer("notif");
+  // Hide notification dot when bell is opened
+  bellDot.hidden = true;
+});
+
+$("#search-btn").addEventListener("click", () => openDrawer("search"));
+$("#support-btn").addEventListener("click", () => openDrawer("support"));
+$("#hamburger-btn").addEventListener("click", () => openDrawer("menu"));
+
+backdrop.addEventListener("click", closeAllDrawers);
+$$("[data-close-drawer]").forEach((btn) => btn.addEventListener("click", closeAllDrawers));
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeAllDrawers();
+});
+
+/* ---------- Profile photo upload ---------- */
+const avatarEditBtn = $("#avatar-edit");
+const avatarInput = $("#avatar-input");
+const avatar = $("#avatar");
+
+avatarEditBtn.addEventListener("click", () => avatarInput.click());
+
+avatarInput.addEventListener("change", (e) => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    avatar.style.backgroundImage = `url('${ev.target.result}')`;
+    avatar.textContent = "";
+  };
+  reader.readAsDataURL(file);
+});
+
 /* ---------- Logout ---------- */
 function logout() {
+  closeAllDrawers();
   showPage("login-page");
   loginForm.reset();
   rememberToggle.setAttribute("aria-pressed", "false");
+  bellDot.hidden = true;
   showView("home");
+  viewHistory.length = 0;
+  viewHistory.push("home");
 }
 $("#logout-btn").addEventListener("click", logout);
 $("#logout-btn-2").addEventListener("click", logout);
+
+/* ---------- Ad carousel ---------- */
+const adSlides = $("#ad-slides");
+const adDots = $("#ad-dots");
+const totalAds = adSlides.children.length;
+let currentAd = 0;
+
+// Build dots
+for (let i = 0; i < totalAds; i++) {
+  const dot = document.createElement("button");
+  dot.className = "ad-dot" + (i === 0 ? " active" : "");
+  dot.setAttribute("aria-label", `Slide ${i + 1}`);
+  dot.addEventListener("click", () => goToAd(i));
+  adDots.appendChild(dot);
+}
+
+function goToAd(index) {
+  currentAd = (index + totalAds) % totalAds;
+  adSlides.style.transform = `translateX(-${currentAd * 100}%)`;
+  $$(".ad-dot").forEach((d, i) => d.classList.toggle("active", i === currentAd));
+}
+
+let adTimer = setInterval(() => goToAd(currentAd + 1), 4500);
+
+// Pause on hover (desktop)
+$("#ad-carousel").addEventListener("mouseenter", () => clearInterval(adTimer));
+$("#ad-carousel").addEventListener("mouseleave", () => {
+  adTimer = setInterval(() => goToAd(currentAd + 1), 4500);
+});
 
 /* ---------- Tiny shake animation injected at runtime ---------- */
 const style = document.createElement("style");

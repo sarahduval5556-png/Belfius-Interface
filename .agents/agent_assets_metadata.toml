@@ -1,0 +1,14 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "mcLskgMQr4uXMWNryqP5M"
+uri = "file://artifacts/belfius-app/assets/services-hero.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "Mct-a7ZNHv6MCQLpLgvG8"
+uri = "file://artifacts/belfius-app/assets/expertise-2026.png"
+type = "image"
+title = "generated_image"

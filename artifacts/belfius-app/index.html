@@ -14,8 +14,9 @@
   <body>
     <!-- ============== LOGIN PAGE ============== -->
     <section id="login-page" class="page active">
-      <div class="login-container">
-        <div class="login-header">
+      <!-- Hero with background image + 3 services -->
+      <div class="login-hero" style="background-image: linear-gradient(160deg, rgba(125,18,48,0.86), rgba(61,8,23,0.92)), url('/assets/services-hero.png');">
+        <div class="hero-top">
           <div class="logo-block">
             <div class="logo-square">
               <i class="fa-solid fa-building-columns"></i>
@@ -25,7 +26,30 @@
           <p class="brand-tagline">Meaningful Banking</p>
         </div>
 
+        <div class="hero-services">
+          <div class="hero-service">
+            <span class="hero-icon"><i class="fa-solid fa-mobile-screen"></i></span>
+            <p>Paiement mobile</p>
+          </div>
+          <div class="hero-service">
+            <span class="hero-icon"><i class="fa-solid fa-wallet"></i></span>
+            <p>Wallet</p>
+          </div>
+          <div class="hero-service">
+            <span class="hero-icon"><i class="fa-solid fa-chart-line"></i></span>
+            <p>Investissement</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="login-container">
         <div class="login-card">
+          <div class="login-card-logo">
+            <div class="logo-square small">
+              <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <span class="login-card-brand">Belfius</span>
+          </div>
           <h2 class="login-title">Connexion</h2>
           <p class="login-subtitle">Accédez à votre espace bancaire sécurisé</p>
 
@@ -101,19 +125,27 @@
       <!-- Top bar -->
       <header class="app-header">
         <div class="header-left">
-          <div class="logo-square small"><i class="fa-solid fa-building-columns"></i></div>
-          <div>
-            <p class="hello">Bonjour,</p>
-            <p class="user-name">Andrea Legrand</p>
+          <button class="icon-btn" id="hamburger-btn" aria-label="Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="header-brand">
+            <div class="logo-square small"><i class="fa-solid fa-building-columns"></i></div>
+            <div>
+              <p class="hello">Bonjour,</p>
+              <p class="user-name">Andrea Legrand</p>
+            </div>
           </div>
         </div>
         <div class="header-actions">
-          <button class="icon-btn" aria-label="Notifications">
-            <i class="fa-regular fa-bell"></i>
-            <span class="badge-dot"></span>
+          <button class="icon-btn" id="search-btn" aria-label="Recherche">
+            <i class="fa-solid fa-magnifying-glass"></i>
           </button>
-          <button class="icon-btn" aria-label="Déconnexion" id="logout-btn">
-            <i class="fa-solid fa-right-from-bracket"></i>
+          <button class="icon-btn" id="bell-btn" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i>
+            <span class="badge-dot" id="bell-dot" hidden></span>
+          </button>
+          <button class="icon-btn" id="support-btn" aria-label="Support &amp; Aide">
+            <i class="fa-regular fa-circle-question"></i>
           </button>
         </div>
       </header>
@@ -147,69 +179,129 @@
             </div>
           </div>
 
-          <div class="quick-actions">
-            <button class="quick-action" data-go="transfer">
-              <span class="qa-icon"><i class="fa-solid fa-paper-plane"></i></span>
-              <span>Virement</span>
+          <!-- Scrolling ad carousel -->
+          <div class="ad-carousel" id="ad-carousel">
+            <div class="ad-slides" id="ad-slides">
+              <div class="ad-slide ad-1">
+                <div class="ad-content">
+                  <span class="ad-tag">Nouveau</span>
+                  <h3>Belfius Mobile Pay</h3>
+                  <p>Payez en un geste, partout, en toute sécurité.</p>
+                </div>
+                <i class="fa-solid fa-mobile-screen ad-icon"></i>
+              </div>
+              <div class="ad-slide ad-2">
+                <div class="ad-content">
+                  <span class="ad-tag">Promo</span>
+                  <h3>Crédit logement -0,30 %</h3>
+                  <p>Profitez de nos taux préférentiels jusqu'au 30 juin.</p>
+                </div>
+                <i class="fa-solid fa-house ad-icon"></i>
+              </div>
+              <div class="ad-slide ad-3">
+                <div class="ad-content">
+                  <span class="ad-tag">Investir</span>
+                  <h3>Belfius Invest Plus</h3>
+                  <p>Faites fructifier votre épargne avec nos experts.</p>
+                </div>
+                <i class="fa-solid fa-chart-line ad-icon"></i>
+              </div>
+              <div class="ad-slide ad-4">
+                <div class="ad-content">
+                  <span class="ad-tag">Sécurité</span>
+                  <h3>Authentification renforcée</h3>
+                  <p>Vos transactions sont protégées par Belfius Direct Net.</p>
+                </div>
+                <i class="fa-solid fa-shield-halved ad-icon"></i>
+              </div>
+            </div>
+            <div class="ad-dots" id="ad-dots"></div>
+          </div>
+
+          <h3 class="grid-title">Vos services</h3>
+
+          <!-- 6 sections grid -->
+          <div class="sections-grid">
+            <button class="section-card" data-go="accounts">
+              <div class="sc-icon"><i class="fa-regular fa-credit-card"></i></div>
+              <p class="sc-title">Comptes &amp; Cartes</p>
+              <p class="sc-desc">Vos comptes et cartes</p>
             </button>
-            <button class="quick-action">
-              <span class="qa-icon"><i class="fa-solid fa-mobile-screen"></i></span>
-              <span>Recharger</span>
+            <button class="section-card" data-go="savings">
+              <div class="sc-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+              <p class="sc-title">Épargne &amp; Placements</p>
+              <p class="sc-desc">Détail de vos avoirs</p>
             </button>
-            <button class="quick-action">
-              <span class="qa-icon"><i class="fa-solid fa-receipt"></i></span>
-              <span>Payer</span>
+            <button class="section-card" data-go="transfer">
+              <div class="sc-icon"><i class="fa-solid fa-paper-plane"></i></div>
+              <p class="sc-title">Virements &amp; Paiements</p>
+              <p class="sc-desc">Effectuer un virement</p>
             </button>
-            <button class="quick-action">
-              <span class="qa-icon"><i class="fa-solid fa-piggy-bank"></i></span>
-              <span>Épargner</span>
+            <button class="section-card" data-go="credits">
+              <div class="sc-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+              <p class="sc-title">Crédits &amp; Prêts</p>
+              <p class="sc-desc">0,00 €</p>
+            </button>
+            <button class="section-card" data-go="insurance">
+              <div class="sc-icon"><i class="fa-solid fa-shield-heart"></i></div>
+              <p class="sc-title">Assurances &amp; Sécurité</p>
+              <p class="sc-desc">Protection &amp; prévention</p>
+            </button>
+            <button class="section-card" data-go="profile">
+              <div class="sc-icon"><i class="fa-regular fa-user"></i></div>
+              <p class="sc-title">Profil &amp; Paramètres</p>
+              <p class="sc-desc">Votre espace personnel</p>
             </button>
           </div>
 
-          <div class="section-head">
-            <h3>Transactions récentes</h3>
-            <a href="#" class="link-sm">Tout voir</a>
+          <!-- Expertise banner -->
+          <div class="expertise-banner" style="background-image: linear-gradient(120deg, rgba(125,18,48,0.78), rgba(61,8,23,0.30)), url('/assets/expertise-2026.png');">
+            <div class="exp-content">
+              <span class="exp-eyebrow">VOTRE EXPERTISE</span>
+              <h3 class="exp-title">Un accompagnement sur mesure pour vos projets 2026</h3>
+              <button class="exp-btn">
+                Prendre rendez-vous <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
           </div>
 
-          <ul class="tx-list">
-            <li class="tx">
-              <div class="tx-icon income"><i class="fa-solid fa-arrow-down"></i></div>
-              <div class="tx-info">
-                <p class="tx-name">Virement entrant</p>
-                <p class="tx-date">Aujourd'hui · 09:14</p>
+          <!-- Marketing messages -->
+          <div class="marketing-row">
+            <div class="mkt-card">
+              <div class="mkt-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div>
+                <p class="mkt-title">Sécurité renforcée</p>
+                <p class="mkt-desc">Authentification multi-facteurs et chiffrement bancaire de bout en bout.</p>
               </div>
-              <p class="tx-amount income">+1 750 000,00 €</p>
-            </li>
-            <li class="tx">
-              <div class="tx-icon"><i class="fa-solid fa-bolt"></i></div>
-              <div class="tx-info">
-                <p class="tx-name">Engie Electrabel</p>
-                <p class="tx-date">Hier · 18:42</p>
+            </div>
+            <div class="mkt-card">
+              <div class="mkt-icon alt"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <div>
+                <p class="mkt-title">Interface intuitive</p>
+                <p class="mkt-desc">Une expérience fluide et moderne pensée pour votre quotidien.</p>
               </div>
-              <p class="tx-amount">−84,30 €</p>
-            </li>
-            <li class="tx">
-              <div class="tx-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-              <div class="tx-info">
-                <p class="tx-name">Delhaize Bruxelles</p>
-                <p class="tx-date">26 avr. · 12:08</p>
-              </div>
-              <p class="tx-amount">−42,17 €</p>
-            </li>
-            <li class="tx">
-              <div class="tx-icon"><i class="fa-solid fa-mug-hot"></i></div>
-              <div class="tx-info">
-                <p class="tx-name">Le Pain Quotidien</p>
-                <p class="tx-date">25 avr. · 08:31</p>
-              </div>
-              <p class="tx-amount">−9,80 €</p>
-            </li>
-          </ul>
+            </div>
+          </div>
+
+          <!-- Social platforms -->
+          <div class="social-block">
+            <p class="social-label">Suivez Belfius</p>
+            <div class="social-row">
+              <a href="#" class="social-btn fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" class="social-btn ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="#" class="social-btn xt" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="#" class="social-btn yt" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+            <p class="social-foot">© Belfius Banque SA — Tous droits réservés</p>
+          </div>
         </div>
 
-        <!-- ===== ACCOUNTS ===== -->
+        <!-- ===== ACCOUNTS & CARDS ===== -->
         <div class="view" data-view="accounts">
-          <h2 class="view-title">Mes comptes</h2>
+          <div class="view-head">
+            <button class="back-btn" data-back><i class="fa-solid fa-chevron-left"></i></button>
+            <h2 class="view-title">Comptes &amp; Cartes</h2>
+          </div>
 
           <div class="bank-card">
             <div class="card-top">
@@ -243,14 +335,6 @@
               <p class="acc-amount">1 750 000,00 €</p>
             </div>
             <div class="account-item">
-              <div class="acc-icon"><i class="fa-solid fa-piggy-bank"></i></div>
-              <div class="acc-info">
-                <p class="acc-name">Compte épargne</p>
-                <p class="acc-iban">BE17 0689 0123 4567</p>
-              </div>
-              <p class="acc-amount">12 480,55 €</p>
-            </div>
-            <div class="account-item">
               <div class="acc-icon"><i class="fa-solid fa-credit-card"></i></div>
               <div class="acc-info">
                 <p class="acc-name">Carte Visa Classic</p>
@@ -258,12 +342,94 @@
               </div>
               <p class="acc-amount">−128,27 €</p>
             </div>
+            <div class="account-item">
+              <div class="acc-icon"><i class="fa-solid fa-money-check-dollar"></i></div>
+              <div class="acc-info">
+                <p class="acc-name">Carte de débit</p>
+                <p class="acc-iban">5471 •••• •••• 8821</p>
+              </div>
+              <p class="acc-amount">0,00 €</p>
+            </div>
           </div>
+        </div>
+
+        <!-- ===== SAVINGS & INVESTMENTS ===== -->
+        <div class="view" data-view="savings">
+          <div class="view-head">
+            <button class="back-btn" data-back><i class="fa-solid fa-chevron-left"></i></button>
+            <h2 class="view-title">Épargne &amp; Placements</h2>
+          </div>
+
+          <div class="total-card">
+            <p class="total-label">Total de vos avoirs</p>
+            <p class="total-amount">1 762 480,55 €</p>
+            <p class="total-meta"><i class="fa-solid fa-arrow-trend-up"></i> Performance globale +1,8 % cette année</p>
+          </div>
+
+          <h3 class="grid-title sm">Détail par produit</h3>
+
+          <ul class="detail-list">
+            <li class="detail-row">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-wallet"></i></div>
+                <div>
+                  <p class="dr-name">Compte courant</p>
+                  <p class="dr-sub">Liquidités disponibles</p>
+                </div>
+              </div>
+              <div class="dr-right">
+                <p class="dr-amount">1 750 000,00 €</p>
+                <p class="dr-share">99,3 %</p>
+              </div>
+            </li>
+            <li class="detail-row">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+                <div>
+                  <p class="dr-name">Compte épargne réglementé</p>
+                  <p class="dr-sub">Taux 2,25 % brut/an</p>
+                </div>
+              </div>
+              <div class="dr-right">
+                <p class="dr-amount">8 750,00 €</p>
+                <p class="dr-share">0,5 %</p>
+              </div>
+            </li>
+            <li class="detail-row">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                <div>
+                  <p class="dr-name">Belfius Invest Plus</p>
+                  <p class="dr-sub">Fonds diversifié — risque modéré</p>
+                </div>
+              </div>
+              <div class="dr-right">
+                <p class="dr-amount">2 480,55 €</p>
+                <p class="dr-share">0,1 %</p>
+              </div>
+            </li>
+            <li class="detail-row">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-landmark"></i></div>
+                <div>
+                  <p class="dr-name">Bons de caisse</p>
+                  <p class="dr-sub">Échéance 2027</p>
+                </div>
+              </div>
+              <div class="dr-right">
+                <p class="dr-amount">1 250,00 €</p>
+                <p class="dr-share">0,1 %</p>
+              </div>
+            </li>
+          </ul>
         </div>
 
         <!-- ===== TRANSFER ===== -->
         <div class="view" data-view="transfer">
-          <h2 class="view-title">Effectuer un virement</h2>
+          <div class="view-head">
+            <button class="back-btn" data-back><i class="fa-solid fa-chevron-left"></i></button>
+            <h2 class="view-title">Virements &amp; Paiements</h2>
+          </div>
 
           <form id="transfer-form" class="transfer-form" autocomplete="off">
             <div class="field-group">
@@ -322,15 +488,173 @@
           </form>
         </div>
 
-        <!-- ===== PROFILE ===== -->
+        <!-- ===== CREDITS & LOANS ===== -->
+        <div class="view" data-view="credits">
+          <div class="view-head">
+            <button class="back-btn" data-back><i class="fa-solid fa-chevron-left"></i></button>
+            <h2 class="view-title">Crédits &amp; Prêts</h2>
+          </div>
+
+          <div class="credits-card">
+            <p class="credits-label">Encours total</p>
+            <p class="credits-amount">0,00 €</p>
+            <p class="credits-meta">Vous n'avez actuellement aucun crédit ni prêt en cours.</p>
+          </div>
+
+          <ul class="detail-list">
+            <li class="detail-row empty">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-house"></i></div>
+                <div>
+                  <p class="dr-name">Crédit logement</p>
+                  <p class="dr-sub">Aucun crédit en cours</p>
+                </div>
+              </div>
+              <div class="dr-right"><p class="dr-amount">0,00 €</p></div>
+            </li>
+            <li class="detail-row empty">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-car"></i></div>
+                <div>
+                  <p class="dr-name">Crédit auto</p>
+                  <p class="dr-sub">Aucun crédit en cours</p>
+                </div>
+              </div>
+              <div class="dr-right"><p class="dr-amount">0,00 €</p></div>
+            </li>
+            <li class="detail-row empty">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+                <div>
+                  <p class="dr-name">Prêt personnel</p>
+                  <p class="dr-sub">Aucun crédit en cours</p>
+                </div>
+              </div>
+              <div class="dr-right"><p class="dr-amount">0,00 €</p></div>
+            </li>
+          </ul>
+
+          <button class="btn-outline">
+            <i class="fa-solid fa-plus"></i> Simuler un crédit
+          </button>
+        </div>
+
+        <!-- ===== INSURANCE & SECURITY ===== -->
+        <div class="view" data-view="insurance">
+          <div class="view-head">
+            <button class="back-btn" data-back><i class="fa-solid fa-chevron-left"></i></button>
+            <h2 class="view-title">Assurances &amp; Sécurité</h2>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon insur"><i class="fa-solid fa-shield-heart"></i></div>
+            <h3 class="info-title">Assurance</h3>
+            <p class="info-desc">Protection financière contre les risques imprévus du quotidien — santé, habitation, voiture, voyage et plus encore.</p>
+          </div>
+
+          <ul class="detail-list">
+            <li class="detail-row">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-house-chimney"></i></div>
+                <div>
+                  <p class="dr-name">Habitation</p>
+                  <p class="dr-sub">Couverture incendie & vol</p>
+                </div>
+              </div>
+              <div class="dr-right">
+                <span class="status-pill green">Active</span>
+              </div>
+            </li>
+            <li class="detail-row">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-car-side"></i></div>
+                <div>
+                  <p class="dr-name">Auto</p>
+                  <p class="dr-sub">Tous risques</p>
+                </div>
+              </div>
+              <div class="dr-right">
+                <span class="status-pill green">Active</span>
+              </div>
+            </li>
+            <li class="detail-row">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-suitcase-medical"></i></div>
+                <div>
+                  <p class="dr-name">Santé & voyage</p>
+                  <p class="dr-sub">Assistance internationale</p>
+                </div>
+              </div>
+              <div class="dr-right">
+                <span class="status-pill green">Active</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="info-card">
+            <div class="info-icon secu"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3 class="info-title">Sécurité</h3>
+            <p class="info-desc">Protection technique de votre compte et prévention des fraudes : authentification forte, alertes en temps réel et chiffrement bancaire.</p>
+          </div>
+
+          <ul class="detail-list">
+            <li class="detail-row">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-fingerprint"></i></div>
+                <div>
+                  <p class="dr-name">Authentification biométrique</p>
+                  <p class="dr-sub">Empreinte & reconnaissance faciale</p>
+                </div>
+              </div>
+              <div class="dr-right">
+                <span class="status-pill green">Active</span>
+              </div>
+            </li>
+            <li class="detail-row">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-bell"></i></div>
+                <div>
+                  <p class="dr-name">Alertes anti-fraude</p>
+                  <p class="dr-sub">Notifications en temps réel</p>
+                </div>
+              </div>
+              <div class="dr-right">
+                <span class="status-pill green">Active</span>
+              </div>
+            </li>
+            <li class="detail-row">
+              <div class="dr-left">
+                <div class="dr-icon"><i class="fa-solid fa-key"></i></div>
+                <div>
+                  <p class="dr-name">Belfius Direct Net</p>
+                  <p class="dr-sub">Code à usage unique</p>
+                </div>
+              </div>
+              <div class="dr-right">
+                <span class="status-pill green">Active</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ===== PROFILE & SETTINGS ===== -->
         <div class="view" data-view="profile">
-          <h2 class="view-title">Profil</h2>
+          <div class="view-head">
+            <button class="back-btn" data-back><i class="fa-solid fa-chevron-left"></i></button>
+            <h2 class="view-title">Profil &amp; Paramètres</h2>
+          </div>
 
           <div class="profile-card">
-            <div class="avatar">AL</div>
+            <div class="avatar-wrap">
+              <div class="avatar" id="avatar">AL</div>
+              <button class="avatar-edit" id="avatar-edit" aria-label="Ajouter une photo de profil">
+                <i class="fa-solid fa-camera"></i>
+              </button>
+              <input type="file" id="avatar-input" accept="image/*" hidden />
+            </div>
             <h3 class="profile-name">Andrea Legrand</h3>
             <p class="profile-meta">Sexe : F · Cliente Belfius depuis 2018</p>
-            <span class="status-pill">
+            <span class="status-pill amber">
               <span class="pill-dot"></span> Compte en cours de déblocage
             </span>
           </div>
@@ -366,32 +690,184 @@
             </li>
           </ul>
 
-          <button class="btn-outline" id="logout-btn-2">
+          <h3 class="grid-title sm">Paramètres</h3>
+          <ul class="profile-list">
+            <li class="profile-row clickable">
+              <span class="pr-icon"><i class="fa-solid fa-language"></i></span>
+              <div>
+                <p class="pr-value">Langue</p>
+                <p class="pr-sub">Français (Belgique)</p>
+              </div>
+              <i class="fa-solid fa-chevron-right pr-arrow"></i>
+            </li>
+            <li class="profile-row clickable">
+              <span class="pr-icon"><i class="fa-solid fa-lock"></i></span>
+              <div>
+                <p class="pr-value">Sécurité &amp; mot de passe</p>
+                <p class="pr-sub">Modifier votre mot de passe</p>
+              </div>
+              <i class="fa-solid fa-chevron-right pr-arrow"></i>
+            </li>
+            <li class="profile-row clickable">
+              <span class="pr-icon"><i class="fa-regular fa-bell"></i></span>
+              <div>
+                <p class="pr-value">Notifications</p>
+                <p class="pr-sub">Gérer les alertes</p>
+              </div>
+              <i class="fa-solid fa-chevron-right pr-arrow"></i>
+            </li>
+          </ul>
+
+          <button class="btn-outline danger" id="logout-btn-2">
             <i class="fa-solid fa-right-from-bracket"></i> Se déconnecter
           </button>
         </div>
       </main>
-
-      <!-- Bottom nav -->
-      <nav class="bottom-nav">
-        <button class="nav-item active" data-target="home">
-          <i class="fa-solid fa-house"></i>
-          <span>Accueil</span>
-        </button>
-        <button class="nav-item" data-target="accounts">
-          <i class="fa-regular fa-credit-card"></i>
-          <span>Comptes</span>
-        </button>
-        <button class="nav-item" data-target="transfer">
-          <i class="fa-solid fa-paper-plane"></i>
-          <span>Virement</span>
-        </button>
-        <button class="nav-item" data-target="profile">
-          <i class="fa-regular fa-user"></i>
-          <span>Vous</span>
-        </button>
-      </nav>
     </section>
+
+    <!-- ============== DRAWERS ============== -->
+
+    <!-- Notifications drawer -->
+    <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+
+    <aside class="drawer drawer-right" id="notif-drawer" hidden>
+      <div class="drawer-head">
+        <h3><i class="fa-regular fa-bell"></i> Notifications</h3>
+        <button class="drawer-close" data-close-drawer><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="drawer-section">
+        <p class="drawer-section-title">Alertes de solde</p>
+        <ul class="notif-list" id="notif-list">
+          <li class="notif-item">
+            <div class="notif-icon"><i class="fa-solid fa-wallet"></i></div>
+            <div class="notif-body">
+              <p class="notif-title">Solde mis à jour</p>
+              <p class="notif-text">Votre solde a été actualisé à 1 750 000,00 €.</p>
+              <p class="notif-time">Aujourd'hui, 09:14</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="drawer-section">
+        <p class="drawer-section-title">Avis de transaction</p>
+        <ul class="notif-list" id="notif-list-tx">
+          <li class="notif-item placeholder">
+            <p class="notif-text muted">Aucune transaction récente.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="drawer-section">
+        <p class="drawer-section-title">Messages importants</p>
+        <ul class="notif-list">
+          <li class="notif-item">
+            <div class="notif-icon amber"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div class="notif-body">
+              <p class="notif-title">Compte en cours de déblocage</p>
+              <p class="notif-text">Certaines opérations sont temporairement indisponibles.</p>
+              <p class="notif-time">Hier</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Search drawer -->
+    <aside class="drawer drawer-top" id="search-drawer" hidden>
+      <div class="drawer-head">
+        <h3><i class="fa-solid fa-magnifying-glass"></i> Recherche</h3>
+        <button class="drawer-close" data-close-drawer><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass input-icon"></i>
+        <input type="search" id="search-input" placeholder="Rechercher transactions, produits, agences..." />
+      </div>
+      <div class="search-options">
+        <button class="search-option">
+          <span class="so-icon"><i class="fa-solid fa-receipt"></i></span>
+          <div>
+            <p class="so-title">Rechercher transactions</p>
+            <p class="so-desc">Par date, montant ou bénéficiaire</p>
+          </div>
+        </button>
+        <button class="search-option">
+          <span class="so-icon"><i class="fa-solid fa-box"></i></span>
+          <div>
+            <p class="so-title">Rechercher produits</p>
+            <p class="so-desc">Comptes, cartes, crédits, assurances</p>
+          </div>
+        </button>
+        <button class="search-option">
+          <span class="so-icon"><i class="fa-solid fa-location-dot"></i></span>
+          <div>
+            <p class="so-title">Localiser une agence</p>
+            <p class="so-desc">Trouvez l'agence Belfius la plus proche</p>
+          </div>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Support drawer -->
+    <aside class="drawer drawer-right" id="support-drawer" hidden>
+      <div class="drawer-head">
+        <h3><i class="fa-regular fa-circle-question"></i> Support &amp; Aide</h3>
+        <button class="drawer-close" data-close-drawer><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="drawer-section">
+        <button class="support-row">
+          <span class="sr-icon"><i class="fa-solid fa-circle-info"></i></span>
+          <div>
+            <p class="sr-title">Aide &amp; FAQ</p>
+            <p class="sr-desc">Réponses aux questions fréquentes</p>
+          </div>
+          <i class="fa-solid fa-chevron-right sr-arrow"></i>
+        </button>
+        <button class="support-row">
+          <span class="sr-icon"><i class="fa-regular fa-comments"></i></span>
+          <div>
+            <p class="sr-title">Chat en ligne</p>
+            <p class="sr-desc">Disponible 7j/7 de 8h à 22h</p>
+          </div>
+          <i class="fa-solid fa-chevron-right sr-arrow"></i>
+        </button>
+        <button class="support-row">
+          <span class="sr-icon"><i class="fa-solid fa-headset"></i></span>
+          <div>
+            <p class="sr-title">Contacter conseiller</p>
+            <p class="sr-desc">+32 2 222 12 02 — du lundi au vendredi</p>
+          </div>
+          <i class="fa-solid fa-chevron-right sr-arrow"></i>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Hamburger drawer (options panel) -->
+    <aside class="drawer drawer-left" id="menu-drawer" hidden>
+      <div class="drawer-head">
+        <div class="menu-user">
+          <div class="logo-square small"><i class="fa-solid fa-building-columns"></i></div>
+          <div>
+            <p class="menu-hello">Andrea Legrand</p>
+            <p class="menu-sub">Espace personnel Belfius</p>
+          </div>
+        </div>
+        <button class="drawer-close" data-close-drawer><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <nav class="menu-list">
+        <button class="menu-item" data-menu-go="home"><i class="fa-solid fa-house"></i> Accueil</button>
+        <button class="menu-item" data-menu-go="accounts"><i class="fa-regular fa-credit-card"></i> Comptes &amp; Cartes</button>
+        <button class="menu-item" data-menu-go="savings"><i class="fa-solid fa-piggy-bank"></i> Épargne &amp; Placements</button>
+        <button class="menu-item" data-menu-go="transfer"><i class="fa-solid fa-paper-plane"></i> Virements &amp; Paiements</button>
+        <button class="menu-item" data-menu-go="credits"><i class="fa-solid fa-hand-holding-dollar"></i> Crédits &amp; Prêts</button>
+        <button class="menu-item" data-menu-go="insurance"><i class="fa-solid fa-shield-heart"></i> Assurances &amp; Sécurité</button>
+        <button class="menu-item" data-menu-go="profile"><i class="fa-regular fa-user"></i> Profil &amp; Paramètres</button>
+      </nav>
+      <div class="menu-divider"></div>
+      <nav class="menu-list">
+        <button class="menu-item"><i class="fa-solid fa-gear"></i> Paramètres</button>
+        <button class="menu-item"><i class="fa-regular fa-circle-question"></i> Aide</button>
+        <button class="menu-item danger" id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Se déconnecter</button>
+      </nav>
+    </aside>
 
     <script src="/script.js"></script>
   </body>
