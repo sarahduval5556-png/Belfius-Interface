@@ -22,7 +22,26 @@ function showView(name) {
     target.classList.add("active");
     if (viewHistory[viewHistory.length - 1] !== name) viewHistory.push(name);
   }
+  syncBottomNav(name);
   window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function syncBottomNav(name) {
+  const tabs = document.querySelectorAll(".nav-tab");
+  tabs.forEach((t) => t.classList.remove("active"));
+  // Map non-tab views to home for highlight purposes
+  const navMap = {
+    home: "home",
+    accounts: "accounts",
+    transfer: "transfer",
+    profile: "profile",
+    savings: "home",
+    credits: "home",
+    insurance: "home",
+  };
+  const target = navMap[name] || "home";
+  const tab = document.querySelector(`.nav-tab[data-nav="${target}"]`);
+  if (tab) tab.classList.add("active");
 }
 
 function goBack() {
@@ -94,6 +113,11 @@ $$("[data-menu-go]").forEach((btn) => {
   });
 });
 $$("[data-back]").forEach((btn) => btn.addEventListener("click", goBack));
+
+/* Bottom nav tabs */
+$$(".nav-tab").forEach((tab) => {
+  tab.addEventListener("click", () => showView(tab.dataset.nav));
+});
 
 /* ---------- Balance visibility ---------- */
 const eyeBtn = $("#eye-btn");

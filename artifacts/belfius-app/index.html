@@ -14,44 +14,25 @@
   <body>
     <!-- ============== LOGIN PAGE ============== -->
     <section id="login-page" class="page active">
-      <!-- Hero with background image + 3 services -->
-      <div class="login-hero" style="background-image: linear-gradient(160deg, rgba(125,18,48,0.86), rgba(61,8,23,0.92)), url('/assets/services-hero.png');">
-        <div class="hero-top">
-          <div class="logo-block">
-            <div class="logo-square">
-              <i class="fa-solid fa-building-columns"></i>
-            </div>
-            <h1 class="brand-name">Belfius</h1>
-          </div>
-          <p class="brand-tagline">Meaningful Banking</p>
-        </div>
+      <!-- Background image + Belfius logo at top -->
+      <div class="login-bg" style="background-image: linear-gradient(160deg, rgba(125,18,48,0.55), rgba(61,8,23,0.78)), url('/assets/login-bg.jpeg');"></div>
 
-        <div class="hero-services">
-          <div class="hero-service">
-            <span class="hero-icon"><i class="fa-solid fa-mobile-screen"></i></span>
-            <p>Paiement mobile</p>
-          </div>
-          <div class="hero-service">
-            <span class="hero-icon"><i class="fa-solid fa-wallet"></i></span>
-            <p>Wallet</p>
-          </div>
-          <div class="hero-service">
-            <span class="hero-icon"><i class="fa-solid fa-chart-line"></i></span>
-            <p>Investissement</p>
-          </div>
+      <div class="login-top">
+        <img src="/assets/belfius-logo.png" alt="Belfius" class="belfius-logo-img" />
+        <div>
+          <h1 class="brand-name">Belfius</h1>
+          <p class="brand-tagline">Meaningful Banking</p>
         </div>
       </div>
 
       <div class="login-container">
-        <div class="login-card">
+        <div class="login-card glass">
           <div class="login-card-logo">
-            <div class="logo-square small">
-              <i class="fa-solid fa-building-columns"></i>
-            </div>
+            <img src="/assets/belfius-logo.png" alt="Belfius" class="belfius-logo-img sm" />
             <span class="login-card-brand">Belfius</span>
           </div>
           <h2 class="login-title">Connexion</h2>
-          <p class="login-subtitle">Accédez à votre espace bancaire sécurisé</p>
+          <p class="login-subtitle">Espace bancaire sécurisé</p>
 
           <form id="login-form" class="login-form" autocomplete="off">
             <div class="field-group">
@@ -109,9 +90,7 @@
     <section id="loading-page" class="page loading-page">
       <div class="loading-content">
         <div class="loading-logo">
-          <div class="logo-square big">
-            <i class="fa-solid fa-building-columns"></i>
-          </div>
+          <img src="/assets/belfius-logo.png" alt="Belfius" class="belfius-logo-img big" />
           <h1 class="brand-name big">Belfius</h1>
         </div>
         <div class="spinner"></div>
@@ -129,7 +108,7 @@
             <i class="fa-solid fa-bars"></i>
           </button>
           <div class="header-brand">
-            <div class="logo-square small"><i class="fa-solid fa-building-columns"></i></div>
+            <img src="/assets/belfius-logo.png" alt="Belfius" class="belfius-logo-img sm" />
             <div>
               <p class="hello">Bonjour,</p>
               <p class="user-name">Andrea Legrand</p>
@@ -723,6 +702,26 @@
           </button>
         </div>
       </main>
+
+      <!-- Bottom navigation: 4 tabs -->
+      <nav class="bottom-nav" id="bottom-nav">
+        <button class="nav-tab active" data-nav="home">
+          <i class="fa-solid fa-house"></i>
+          <span>Accueil</span>
+        </button>
+        <button class="nav-tab" data-nav="accounts">
+          <i class="fa-regular fa-credit-card"></i>
+          <span>Comptes</span>
+        </button>
+        <button class="nav-tab" data-nav="transfer">
+          <i class="fa-solid fa-paper-plane"></i>
+          <span>Virement</span>
+        </button>
+        <button class="nav-tab" data-nav="profile">
+          <i class="fa-regular fa-user"></i>
+          <span>Vous</span>
+        </button>
+      </nav>
     </section>
 
     <!-- ============== DRAWERS ============== -->
@@ -844,7 +843,7 @@
     <aside class="drawer drawer-left" id="menu-drawer" hidden>
       <div class="drawer-head">
         <div class="menu-user">
-          <div class="logo-square small"><i class="fa-solid fa-building-columns"></i></div>
+          <img src="/assets/belfius-logo.png" alt="Belfius" class="belfius-logo-img sm" />
           <div>
             <p class="menu-hello">Andrea Legrand</p>
             <p class="menu-sub">Espace personnel Belfius</p>
