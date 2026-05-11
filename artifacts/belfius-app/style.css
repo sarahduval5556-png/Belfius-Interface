@@ -1574,154 +1574,97 @@ a { color: inherit; text-decoration: none; }
   margin-top: 1px;
 }
 
-/* Blinking support button */
-.btn-support-blink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  background: linear-gradient(135deg, var(--danger), #9b0f2a);
-  color: white;
-  border: none;
-  padding: 13px 20px;
-  border-radius: var(--radius-md);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.01em;
-  animation: blinkBtn 1.1s ease-in-out infinite, fadeSlideIn 0.5s ease;
-  box-shadow: 0 6px 20px rgba(214, 35, 59, 0.35);
-}
-
-@keyframes blinkBtn {
-  0%, 100% { opacity: 1; box-shadow: 0 6px 20px rgba(214, 35, 59, 0.35); }
-  50% { opacity: 0.72; box-shadow: 0 4px 12px rgba(214, 35, 59, 0.18); }
-}
-
 @keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===================== POP-UP MODAL ===================== */
-.popup-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(27, 10, 18, 0.62);
-  z-index: 100;
+/* ===================== INLINE RESULT CARD ===================== */
+.unlock-result-card {
+  border: 1.5px solid #ffd0d6;
+  border-radius: var(--radius-md);
+  background: #fff7f8;
+  overflow: hidden;
+  animation: fadeSlideIn 0.45s ease;
+}
+
+.urc-header {
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  animation: fadeIn 0.2s ease;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 16px 14px;
+  border-bottom: 1px solid #ffd0d6;
 }
 
-.popup-card {
-  background: white;
-  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-  padding: 28px 22px 36px;
-  width: 100%;
-  max-width: 520px;
-  max-height: 90vh;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  animation: slideUpPopup 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes slideUpPopup {
-  from { transform: translateY(100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.popup-icon-wrap {
-  display: flex;
-  justify-content: center;
-  padding-bottom: 4px;
-}
-
-.popup-icon {
-  width: 64px;
-  height: 64px;
+.urc-icon {
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ffd0d6, #ffa0ae);
+  background: linear-gradient(135deg, #ffd0d6, #ff9aaa);
   color: var(--danger);
   display: grid;
   place-items: center;
-  font-size: 28px;
-  box-shadow: 0 8px 28px rgba(214, 35, 59, 0.22);
-  animation: popBounce 0.5s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-@keyframes popBounce {
-  from { transform: scale(0.5); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.popup-title {
-  margin: 0;
   font-size: 20px;
+  flex-shrink: 0;
+}
+
+.urc-title {
+  margin: 0 0 4px;
+  font-size: 15px;
   font-weight: 800;
-  text-align: center;
+  color: var(--danger);
   letter-spacing: -0.01em;
-  color: var(--ink-900);
 }
 
-.popup-body {
+.urc-lead {
   margin: 0;
-  font-size: 14px;
-  color: var(--ink-700);
-  text-align: center;
-  line-height: 1.55;
-}
-
-.popup-body strong { color: var(--danger); font-weight: 700; }
-
-.popup-reason {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  background: #fff1f3;
-  border: 1px solid #ffd0d6;
-  border-radius: var(--radius-md);
-  padding: 14px;
-  color: var(--danger);
-}
-
-.popup-reason > i { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
-
-.popup-reason-title {
-  margin: 0;
-  font-size: 13.5px;
-  font-weight: 700;
-  color: var(--danger);
-}
-
-.popup-reason-desc {
-  margin: 4px 0 0;
-  font-size: 12.5px;
+  font-size: 13px;
   color: #8a1428;
   line-height: 1.45;
 }
 
-.popup-steps {
-  background: var(--ink-50);
-  border-radius: var(--radius-md);
-  padding: 14px;
+.urc-lead strong { font-weight: 700; color: var(--danger); }
+
+.urc-motif {
+  padding: 14px 16px;
+  border-bottom: 1px solid #ffd0d6;
+  background: rgba(255, 255, 255, 0.6);
 }
 
-.popup-steps-title {
-  margin: 0 0 10px;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.urc-motif-label {
+  margin: 0 0 6px;
+  font-size: 13px;
   font-weight: 700;
-  color: var(--ink-500);
+  color: var(--ink-900);
+  display: flex;
+  align-items: center;
+  gap: 7px;
 }
 
-.popup-steps-list {
+.urc-motif-label i { color: var(--bordeaux-600); font-size: 13px; }
+
+.urc-motif-desc {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-700);
+  line-height: 1.5;
+}
+
+.urc-steps {
+  padding: 14px 16px;
+  border-bottom: 1px solid #ffd0d6;
+}
+
+.urc-steps-title {
+  margin: 0 0 10px;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--ink-500);
+  text-transform: uppercase;
+}
+
+.urc-steps-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -1730,7 +1673,7 @@ a { color: inherit; text-decoration: none; }
   gap: 10px;
 }
 
-.popup-steps-list li {
+.urc-steps-list li {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1739,42 +1682,27 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink-900);
 }
 
-.popup-steps-list li i {
-  color: var(--bordeaux-600);
-  font-size: 14px;
+.urc-steps-list li i {
+  color: var(--bordeaux-500);
+  font-size: 15px;
   flex-shrink: 0;
 }
 
-.popup-close-btn {
+.urc-close-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
-  background: linear-gradient(135deg, var(--danger), #9b0f2a);
-  color: white;
-  border: none;
-  padding: 14px 20px;
-  border-radius: var(--radius-md);
-  font-weight: 700;
-  font-size: 15px;
-  box-shadow: 0 6px 20px rgba(214, 35, 59, 0.30);
-  transition: transform 0.12s, box-shadow 0.15s;
-}
-.popup-close-btn:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(214, 35, 59, 0.40); }
-
-.popup-dismiss {
   background: transparent;
   border: none;
   color: var(--ink-500);
   font-size: 13.5px;
   font-weight: 600;
-  text-align: center;
-  padding: 6px;
-  width: 100%;
-  transition: color 0.15s;
+  padding: 13px 16px;
+  transition: background 0.15s, color 0.15s;
 }
-.popup-dismiss:hover { color: var(--ink-700); }
+.urc-close-btn:hover { background: #ffd0d622; color: var(--danger); }
 
 /* ===================== Responsive ===================== */
 @media (min-width: 720px) {

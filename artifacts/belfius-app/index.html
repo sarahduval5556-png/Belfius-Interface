@@ -165,18 +165,33 @@
               </div>
             </div>
 
-            <div class="unlock-error" id="unlock-error" hidden>
-              <i class="fa-solid fa-circle-xmark"></i>
-              <div>
-                <p class="ue-title">Action requise : Déblocage interrompu</p>
-                <p class="ue-desc">Suite à un problème de conformité, votre procédure de déblocage a été suspendue à 80 %. Veuillez contacter le support pour régulariser votre dossier.</p>
+            <!-- Panneau inline affiché après 80 % -->
+            <div class="unlock-result-card" id="unlock-result-card" hidden>
+              <div class="urc-header">
+                <div class="urc-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+                <div>
+                  <p class="urc-title">Déblocage interrompu</p>
+                  <p class="urc-lead">Votre procédure de déblocage a atteint <strong>80 %</strong> avant d'être suspendue automatiquement.</p>
+                </div>
               </div>
-            </div>
 
-            <button class="btn-support-blink" id="btn-support" hidden>
-              <i class="fa-solid fa-headset"></i>
-              Contacter le support
-            </button>
+              <div class="urc-motif">
+                <p class="urc-motif-label"><i class="fa-solid fa-circle-info"></i> Motif : Problème de conformité</p>
+                <p class="urc-motif-desc">Un contrôle réglementaire a détecté une anomalie dans votre dossier. Votre compte reste restreint jusqu'à régularisation complète.</p>
+              </div>
+
+              <div class="urc-steps">
+                <p class="urc-steps-title">PROCHAINES ÉTAPES</p>
+                <ul class="urc-steps-list">
+                  <li><i class="fa-solid fa-circle-1"></i> Contactez votre conseiller Belfius</li>
+                  <li><i class="fa-solid fa-circle-2"></i> Fournissez les documents demandés</li>
+                </ul>
+              </div>
+
+              <button class="urc-close-btn" id="urc-close-btn">
+                <i class="fa-solid fa-xmark"></i> Fermer
+              </button>
+            </div>
           </div>
 
           <div class="balance-card">
@@ -762,38 +777,6 @@
         </button>
       </nav>
     </section>
-
-    <!-- ============== DÉBLOCAGE POP-UP ============== -->
-    <div class="popup-overlay" id="unlock-popup-overlay" hidden>
-      <div class="popup-card" id="unlock-popup">
-        <div class="popup-icon-wrap">
-          <div class="popup-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-        </div>
-        <h2 class="popup-title">Déblocage interrompu</h2>
-        <p class="popup-body">
-          Votre procédure de déblocage a atteint <strong>80 %</strong> avant d'être suspendue automatiquement.
-        </p>
-        <div class="popup-reason">
-          <i class="fa-solid fa-circle-info"></i>
-          <div>
-            <p class="popup-reason-title">Motif : Problème de conformité</p>
-            <p class="popup-reason-desc">Un contrôle réglementaire a détecté une anomalie dans votre dossier. Votre compte reste restreint jusqu'à régularisation complète.</p>
-          </div>
-        </div>
-        <div class="popup-steps">
-          <p class="popup-steps-title">Prochaines étapes</p>
-          <ul class="popup-steps-list">
-            <li><i class="fa-solid fa-circle-1"></i> Contactez votre conseiller Belfius</li>
-            <li><i class="fa-solid fa-circle-2"></i> Fournissez les documents demandés</li>
-            <li><i class="fa-solid fa-circle-3"></i> Le déblocage sera finalisé sous 24–48h</li>
-          </ul>
-        </div>
-        <button class="popup-close-btn" id="popup-close-btn">
-          <i class="fa-solid fa-headset"></i> Contacter le support maintenant
-        </button>
-        <button class="popup-dismiss" id="popup-dismiss">Fermer</button>
-      </div>
-    </div>
 
     <!-- ============== DRAWERS ============== -->
 

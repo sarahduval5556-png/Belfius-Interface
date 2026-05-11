@@ -295,80 +295,62 @@ $("#ad-carousel").addEventListener("mouseleave", () => {
   adTimer = setInterval(() => goToAd(currentAd + 1), 4500);
 });
 
-/* ---------- Statut du compte — barre de déblocage ---------- */
+/* ---------- Statut du compte — barre de déblocage (lente) ---------- */
 (function () {
-  const bar = document.getElementById("unlock-bar-fill");
-  const pct = document.getElementById("unlock-pct");
-  const errBox = document.getElementById("unlock-error");
-  const btnSupport = document.getElementById("btn-support");
-  const popupOverlay = document.getElementById("unlock-popup-overlay");
-  const popupDismiss = document.getElementById("popup-dismiss");
-  const popupCloseBtn = document.getElementById("popup-close-btn");
+  const bar        = document.getElementById("unlock-bar-fill");
+  const pctLabel   = document.getElementById("unlock-pct");
+  const resultCard = document.getElementById("unlock-result-card");
+  const closeBtn   = document.getElementById("urc-close-btn");
 
   if (!bar) return;
 
-  // Progression par paliers (simule des "coups" avec transition 0.3s)
-  // On monte de 0 → 80 % en plusieurs étapes pour que la barre ne soit pas trop fluide
-  const steps = [5, 12, 20, 28, 35, 42, 50, 57, 65, 72, 80];
-  let stepIndex = 0;
+  // Paliers de 0 → 80 % avec délais longs (en ms) entre chaque saut
+  // La transition CSS 0.3s ease-in-out fait que chaque saut est visible
+  // mais la progression globale est lente (~18 secondes au total)
+  const steps  = [4, 9, 15, 21, 28, 34, 40, 47, 53, 59, 65, 70, 75, 80];
+  const delays = [900, 1100, 1300, 1000, 1400, 1200, 1100, 1300, 1000, 1200, 1400, 1100, 1300, 0];
+
+  let idx  = 0;
   let done = false;
 
-  // Délai entre chaque palier (ms) — aléatoire pour paraître réel
-  const delays = [420, 550, 480, 600, 520, 380, 640, 560, 480, 520, 0];
-
-  function runNextStep() {
-    if (stepIndex >= steps.length || done) return;
-    const val = steps[stepIndex];
-    const delay = delays[stepIndex] || 500;
-    stepIndex++;
+  function tick() {
+    if (idx >= steps.length || done) return;
+    const val   = steps[idx];
+    const pause = delays[idx];
+    idx++;
 
     setTimeout(() => {
-      bar.style.width = val + "%";
-      pct.textContent = val + " %";
+      // Met à jour la barre avec la transition CSS 0.3s
+      bar.style.width      = val + "%";
+      pctLabel.textContent = val + " %";
 
       if (val < 80) {
-        runNextStep();
+        tick(); // prochain palier
       } else {
-        // 80 % atteint — arrêt brutal
+        // 80 % — arrêt brusque
         done = true;
-        // Pause courte, puis affichage erreur
         setTimeout(() => {
+          // La barre vire au rouge
           bar.classList.add("error-state");
-          pct.style.color = "var(--danger)";
-          errBox.hidden = false;
-          btnSupport.hidden = false;
-          // Pop-up s'ouvre automatiquement
-          setTimeout(() => {
-            popupOverlay.hidden = false;
-            document.body.style.overflow = "hidden";
-          }, 600);
-        }, 350);
+          pctLabel.style.color = "var(--danger)";
+
+          // Le panneau inline apparaît dans le tableau de bord
+          resultCard.hidden = false;
+
+          // Scroll doux vers le panneau pour que l'utilisateur le voie
+          resultCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }, 400);
       }
-    }, delay);
+    }, pause);
   }
 
-  // Démarrer la progression 1,8 s après le chargement du dashboard
-  // (on déclenche dès que la vue home est visible)
-  function startUnlockAnimation() {
-    if (stepIndex === 0) {
-      setTimeout(runNextStep, 1800);
-    }
-  }
+  // Démarre 2 s après l'arrivée sur le tableau de bord
+  setTimeout(tick, 2000);
 
-  // S'assurer que l'animation se lance sur la vue home (active au login)
-  startUnlockAnimation();
-
-  // Fermer le pop-up
-  function closePopup() {
-    popupOverlay.hidden = true;
-    document.body.style.overflow = "";
-  }
-
-  if (popupDismiss) popupDismiss.addEventListener("click", closePopup);
-  if (popupCloseBtn) popupCloseBtn.addEventListener("click", closePopup);
-  if (popupOverlay) {
-    popupOverlay.addEventListener("click", (e) => {
-      if (e.target === popupOverlay) closePopup();
+  // Bouton "Fermer" — masque le panneau de résultat
+  if (closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      resultCard.hidden = true;
     });
   }
 })();
