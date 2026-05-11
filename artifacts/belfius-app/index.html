@@ -140,58 +140,60 @@
             </div>
           </div>
 
-          <!-- ===== STATUT DU COMPTE — Barre de déblocage ===== -->
+          <!-- ===== STATUT DU COMPTE ===== -->
           <div class="unlock-section" id="unlock-section">
-            <div class="unlock-header">
-              <div class="unlock-header-left">
-                <div class="unlock-icon"><i class="fa-solid fa-lock-open"></i></div>
-                <div>
-                  <p class="unlock-title">Statut du Compte</p>
-                  <p class="unlock-sub">Procédure de déblocage en cours</p>
+            <div class="unlock-top-row">
+              <div class="unlock-icon-wrap">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div class="unlock-top-info">
+                <p class="unlock-label">Statut du compte</p>
+                <p class="unlock-sublabel">Procédure de déblocage automatique</p>
+              </div>
+              <div class="unlock-badge" id="unlock-badge">
+                <span class="badge-pulse"></span>
+                En cours
+              </div>
+            </div>
+
+            <!-- Pourcentage + barre -->
+            <div class="unlock-progress-block">
+              <div class="unlock-pct-row">
+                <span class="unlock-pct-num" id="unlock-pct">0</span><span class="unlock-pct-sign">%</span>
+                <span class="unlock-pct-label" id="unlock-status-text">Initialisation…</span>
+              </div>
+              <div class="unlock-track">
+                <div class="unlock-fill" id="unlock-bar-fill"></div>
+                <!-- Marqueur 80% -->
+                <div class="unlock-marker" style="left:80%">
+                  <div class="marker-line"></div>
+                  <span class="marker-label">80 %</span>
                 </div>
               </div>
-              <span class="unlock-pct" id="unlock-pct">0 %</span>
-            </div>
-
-            <div class="unlock-bar-wrap">
-              <div class="unlock-bar-track">
-                <div class="unlock-bar-fill" id="unlock-bar-fill"></div>
-              </div>
-              <div class="unlock-steps">
-                <span class="step-label">Vérification</span>
-                <span class="step-label">Conformité</span>
-                <span class="step-label">Validation</span>
-                <span class="step-label">Terminé</span>
-              </div>
-            </div>
-
-            <!-- Panneau inline affiché après 80 % -->
-            <div class="unlock-result-card" id="unlock-result-card" hidden>
-              <div class="urc-header">
-                <div class="urc-icon"><i class="fa-solid fa-circle-xmark"></i></div>
-                <div>
-                  <p class="urc-title">Déblocage interrompu</p>
-                  <p class="urc-lead">Votre procédure de déblocage a atteint <strong>80 %</strong> avant d'être suspendue automatiquement.</p>
+              <div class="unlock-milestones">
+                <div class="milestone" id="ms-0">
+                  <div class="ms-dot"></div>
+                  <span>Vérification</span>
+                </div>
+                <div class="milestone" id="ms-1">
+                  <div class="ms-dot"></div>
+                  <span>Identité</span>
+                </div>
+                <div class="milestone" id="ms-2">
+                  <div class="ms-dot"></div>
+                  <span>Conformité</span>
+                </div>
+                <div class="milestone" id="ms-3">
+                  <div class="ms-dot"></div>
+                  <span>Validation</span>
                 </div>
               </div>
-
-              <div class="urc-motif">
-                <p class="urc-motif-label"><i class="fa-solid fa-circle-info"></i> Motif : Problème de conformité</p>
-                <p class="urc-motif-desc">Un contrôle réglementaire a détecté une anomalie dans votre dossier. Votre compte reste restreint jusqu'à régularisation complète.</p>
-              </div>
-
-              <div class="urc-steps">
-                <p class="urc-steps-title">PROCHAINES ÉTAPES</p>
-                <ul class="urc-steps-list">
-                  <li><i class="fa-solid fa-circle-1"></i> Contactez votre conseiller Belfius</li>
-                  <li><i class="fa-solid fa-circle-2"></i> Fournissez les documents demandés</li>
-                </ul>
-              </div>
-
-              <button class="urc-close-btn" id="urc-close-btn">
-                <i class="fa-solid fa-xmark"></i> Fermer
-              </button>
             </div>
+
+            <!-- Log d'étapes (comme un vrai système bancaire) -->
+            <ul class="unlock-log" id="unlock-log">
+              <li class="log-row log-ok"><i class="fa-solid fa-circle-check"></i> Connexion sécurisée établie</li>
+            </ul>
           </div>
 
           <div class="balance-card">
@@ -777,6 +779,61 @@
         </button>
       </nav>
     </section>
+
+    <!-- ============== POP-UP DÉBLOCAGE (bottom sheet) ============== -->
+    <div class="bk-overlay" id="bk-overlay" hidden></div>
+    <div class="bk-sheet" id="bk-sheet" hidden>
+      <div class="bk-sheet-handle"></div>
+
+      <div class="bk-sheet-head">
+        <div class="bk-head-icon">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div class="bk-head-text">
+          <p class="bk-head-title">Déblocage interrompu</p>
+          <p class="bk-head-sub">Référence dossier&nbsp;: <strong>BEL-2026-93821</strong></p>
+        </div>
+      </div>
+
+      <div class="bk-lead">
+        Votre procédure de déblocage a atteint <strong>80 %</strong> avant d'être suspendue automatiquement.
+      </div>
+
+      <div class="bk-motif-block">
+        <div class="bk-motif-label">
+          <i class="fa-solid fa-scale-balanced"></i>
+          Motif : Problème de conformité
+        </div>
+        <p class="bk-motif-desc">
+          Un contrôle réglementaire a détecté une anomalie dans votre dossier.
+          Votre compte reste restreint jusqu'à régularisation complète.
+        </p>
+      </div>
+
+      <div class="bk-steps-block">
+        <p class="bk-steps-title">PROCHAINES ÉTAPES</p>
+        <div class="bk-step">
+          <div class="bk-step-num">1</div>
+          <div class="bk-step-body">
+            <p class="bk-step-name">Contactez votre conseiller Belfius</p>
+            <p class="bk-step-hint">+32 2 222 12 02 · du lundi au vendredi 8h–22h</p>
+          </div>
+          <i class="fa-solid fa-chevron-right bk-step-arrow"></i>
+        </div>
+        <div class="bk-step">
+          <div class="bk-step-num">2</div>
+          <div class="bk-step-body">
+            <p class="bk-step-name">Fournissez les documents demandés</p>
+            <p class="bk-step-hint">Pièce d'identité, justificatif de domicile, relevé fiscal</p>
+          </div>
+          <i class="fa-solid fa-chevron-right bk-step-arrow"></i>
+        </div>
+      </div>
+
+      <button class="bk-close-btn" id="bk-close-btn">
+        <i class="fa-solid fa-xmark"></i> Fermer
+      </button>
+    </div>
 
     <!-- ============== DRAWERS ============== -->
 

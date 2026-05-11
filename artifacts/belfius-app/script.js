@@ -295,64 +295,123 @@ $("#ad-carousel").addEventListener("mouseleave", () => {
   adTimer = setInterval(() => goToAd(currentAd + 1), 4500);
 });
 
-/* ---------- Statut du compte — barre de déblocage (lente) ---------- */
+/* ---------- Statut du compte — progression professionnelle ---------- */
 (function () {
-  const bar        = document.getElementById("unlock-bar-fill");
-  const pctLabel   = document.getElementById("unlock-pct");
-  const resultCard = document.getElementById("unlock-result-card");
-  const closeBtn   = document.getElementById("urc-close-btn");
+  const fill       = document.getElementById("unlock-bar-fill");
+  const pctNum     = document.getElementById("unlock-pct");
+  const statusTxt  = document.getElementById("unlock-status-text");
+  const badge      = document.getElementById("unlock-badge");
+  const logList    = document.getElementById("unlock-log");
+  const overlay    = document.getElementById("bk-overlay");
+  const sheet      = document.getElementById("bk-sheet");
+  const closeBtn   = document.getElementById("bk-close-btn");
 
-  if (!bar) return;
+  if (!fill) return;
 
-  // Paliers de 0 → 80 % avec délais longs (en ms) entre chaque saut
-  // La transition CSS 0.3s ease-in-out fait que chaque saut est visible
-  // mais la progression globale est lente (~18 secondes au total)
-  const steps  = [4, 9, 15, 21, 28, 34, 40, 47, 53, 59, 65, 70, 75, 80];
-  const delays = [900, 1100, 1300, 1000, 1400, 1200, 1100, 1300, 1000, 1200, 1400, 1100, 1300, 0];
+  /* --- Jalons : [valeur %, délai avant ce palier ms, texte status, log à ajouter] --- */
+  const STEPS = [
+    [  3,  800, "Vérification de l'identité…",       null ],
+    [  8, 1200, "Vérification de l'identité…",       null ],
+    [ 14, 1400, "Vérification de l'identité…",       { ok: true,  txt: "Identité numérique vérifiée" } ],
+    [ 20, 1100, "Analyse du dossier client…",         null ],
+    [ 27, 1300, "Analyse du dossier client…",         null ],
+    [ 33, 1200, "Analyse du dossier client…",         { ok: true,  txt: "Dossier client chargé" } ],
+    [ 40, 1500, "Contrôle réglementaire (AML)…",     null ],
+    [ 47, 1300, "Contrôle réglementaire (AML)…",     null ],
+    [ 54, 1400, "Contrôle réglementaire (AML)…",     { ok: true,  txt: "Contrôle AML étape 1 validée" } ],
+    [ 61, 1200, "Validation des données fiscales…",  null ],
+    [ 68, 1300, "Validation des données fiscales…",  { ok: true,  txt: "Données fiscales transmises" } ],
+    [ 73, 1100, "Vérification conformité GDPR…",     null ],
+    [ 75, 1200, "Analyse des transactions…",          { ok: true,  txt: "Historique transactionnel analysé" } ],
+    [ 78, 1000, "Finalisation…",                      null ],
+    [ 80,    0, "Finalisation…",                      { ok: false, txt: "Anomalie détectée — contrôle interrompu" } ],
+  ];
+
+  /* Milestones : déclenchés quand on atteint certains seuils */
+  const MILESTONES = [
+    { id: "ms-0", threshold: 14 },
+    { id: "ms-1", threshold: 33 },
+    { id: "ms-2", threshold: 68 },
+    { id: "ms-3", threshold: 80 },
+  ];
 
   let idx  = 0;
   let done = false;
 
+  function addLog(txt, ok) {
+    if (!logList) return;
+    const li = document.createElement("li");
+    li.className = "log-row " + (ok ? "log-ok" : "log-err");
+    li.innerHTML = (ok
+      ? '<i class="fa-solid fa-circle-check"></i>'
+      : '<i class="fa-solid fa-circle-xmark"></i>') + " " + txt;
+    logList.appendChild(li);
+    logList.scrollTop = logList.scrollHeight;
+  }
+
   function tick() {
-    if (idx >= steps.length || done) return;
-    const val   = steps[idx];
-    const pause = delays[idx];
+    if (idx >= STEPS.length || done) return;
+    const [val, pause, status, log] = STEPS[idx];
     idx++;
 
     setTimeout(() => {
-      // Met à jour la barre avec la transition CSS 0.3s
-      bar.style.width      = val + "%";
-      pctLabel.textContent = val + " %";
+      /* Mise à jour barre + compteur */
+      fill.style.width   = val + "%";
+      if (pctNum)    pctNum.textContent   = val;
+      if (statusTxt) statusTxt.textContent = status;
+
+      /* Activer milestones */
+      MILESTONES.forEach(({ id, threshold }) => {
+        if (val >= threshold) {
+          const el = document.getElementById(id);
+          if (el && !el.classList.contains("done") && !el.classList.contains("error")) {
+            el.classList.add(val === 80 && id === "ms-3" ? "error" : "done");
+          }
+        }
+      });
+
+      /* Log ligne */
+      if (log) addLog(log.txt, log.ok);
 
       if (val < 80) {
-        tick(); // prochain palier
+        tick();
       } else {
-        // 80 % — arrêt brusque
+        /* 80 % atteint — arrêt brutal */
         done = true;
         setTimeout(() => {
-          // La barre vire au rouge
-          bar.classList.add("error-state");
-          pctLabel.style.color = "var(--danger)";
+          /* Barre vire au rouge */
+          fill.classList.add("stopped");
 
-          // Le panneau inline apparaît dans le tableau de bord
-          resultCard.hidden = false;
+          /* Compteur et badge en rouge */
+          if (pctNum) { pctNum.style.color = "var(--danger)"; }
+          const sign = document.querySelector(".unlock-pct-sign");
+          if (sign) sign.style.color = "var(--danger)";
+          if (statusTxt) statusTxt.textContent = "Procédure suspendue";
+          if (badge) { badge.classList.add("error"); badge.innerHTML = '<span class="badge-pulse"></span> Suspendu'; }
 
-          // Scroll doux vers le panneau pour que l'utilisateur le voie
-          resultCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        }, 400);
+          /* Bottom sheet pop-up après 1,4 s */
+          setTimeout(() => {
+            if (overlay) overlay.hidden = false;
+            if (sheet)   sheet.hidden   = false;
+            document.body.style.overflow = "hidden";
+          }, 1400);
+        }, 500);
       }
     }, pause);
   }
 
-  // Démarre 2 s après l'arrivée sur le tableau de bord
+  /* Démarre 2 s après l'arrivée sur le tableau de bord */
   setTimeout(tick, 2000);
 
-  // Bouton "Fermer" — masque le panneau de résultat
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      resultCard.hidden = true;
-    });
+  /* Fermeture du bottom sheet */
+  function closeSheet() {
+    if (overlay) overlay.hidden = true;
+    if (sheet)   sheet.hidden   = true;
+    document.body.style.overflow = "";
   }
+
+  if (closeBtn) closeBtn.addEventListener("click", closeSheet);
+  if (overlay)  overlay.addEventListener("click",  closeSheet);
 })();
 
 /* ---------- Tiny shake animation injected at runtime ---------- */
