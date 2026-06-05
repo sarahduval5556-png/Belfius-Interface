@@ -1,34 +1,35 @@
 /* ===================== Belfius — Banque en ligne ===================== */
 :root {
-  --rose-50: #fff1f5;
-  --rose-100: #ffd9e4;
-  --rose-200: #ffb1c8;
-  --rose-300: #ff7fa8;
-  --rose-400: #ff4d88;
-  --rose-500: #e91e63;
-  --bordeaux-500: #a01a3c;
-  --bordeaux-600: #7d1230;
-  --bordeaux-700: #5d0d23;
-  --bordeaux-800: #3d0817;
+  /* BNP Paribas — palette verte */
+  --rose-50:  #f0faf6;
+  --rose-100: #cce8d9;
+  --rose-200: #99d1b3;
+  --rose-300: #55b38a;
+  --rose-400: #229e6c;
+  --rose-500: #00915A;   /* vert BNP principal */
+  --bordeaux-500: #006C44;
+  --bordeaux-600: #005236;
+  --bordeaux-700: #003D28;
+  --bordeaux-800: #00291A;
 
-  --ink-900: #1b0a12;
-  --ink-700: #4a3742;
-  --ink-500: #7a6571;
-  --ink-300: #b8a9b1;
-  --ink-100: #ece4e8;
-  --ink-50: #f7f3f5;
+  --ink-900: #0D1A14;
+  --ink-700: #2D4A3C;
+  --ink-500: #5A7868;
+  --ink-300: #9DBBA9;
+  --ink-100: #D6E8DF;
+  --ink-50:  #EEF6F1;
 
-  --bg: #faf6f7;
+  --bg: #F5FAF7;
   --card: #ffffff;
-  --line: #efe4e9;
+  --line: #D6E8DF;
 
   --success: #16a34a;
   --danger: #d6233b;
   --amber: #c47a00;
 
-  --shadow-sm: 0 1px 2px rgba(125, 18, 48, 0.06), 0 2px 8px rgba(125, 18, 48, 0.04);
-  --shadow-md: 0 6px 18px rgba(125, 18, 48, 0.10);
-  --shadow-lg: 0 18px 40px rgba(125, 18, 48, 0.18);
+  --shadow-sm: 0 1px 2px rgba(0,82,54,0.06), 0 2px 8px rgba(0,82,54,0.04);
+  --shadow-md: 0 6px 18px rgba(0,82,54,0.10);
+  --shadow-lg: 0 18px 40px rgba(0,82,54,0.18);
 
   --radius-sm: 10px;
   --radius-md: 14px;

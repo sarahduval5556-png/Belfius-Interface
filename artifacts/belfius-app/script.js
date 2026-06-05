@@ -1,7 +1,7 @@
 /* ===================== Belfius — script.js ===================== */
 
-const VALID_USERNAME = "Andrea33";
-const VALID_PASSWORD = "Moi12";
+const VALID_USERNAME = "chavet33";
+const VALID_PASSWORD = "0202";
 
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
@@ -123,7 +123,7 @@ $$(".nav-tab").forEach((tab) => {
 const eyeBtn = $("#eye-btn");
 const balanceAmount = $("#balance-amount");
 let balanceHidden = false;
-const REAL_BALANCE = "1 750 000,00 €";
+const REAL_BALANCE = "900 000,00 €";
 eyeBtn.addEventListener("click", () => {
   balanceHidden = !balanceHidden;
   balanceAmount.textContent = balanceHidden ? "•••••• €" : REAL_BALANCE;
