@@ -302,9 +302,7 @@ $("#ad-carousel").addEventListener("mouseleave", () => {
   const statusTxt  = document.getElementById("unlock-status-text");
   const badge      = document.getElementById("unlock-badge");
   const logList    = document.getElementById("unlock-log");
-  const overlay    = document.getElementById("bk-overlay");
-  const sheet      = document.getElementById("bk-sheet");
-  const closeBtn   = document.getElementById("bk-close-btn");
+  const closeBtn   = null;
 
   if (!fill) return;
 
@@ -388,13 +386,6 @@ $("#ad-carousel").addEventListener("mouseleave", () => {
           if (sign) sign.style.color = "var(--danger)";
           if (statusTxt) statusTxt.textContent = "Procédure suspendue";
           if (badge) { badge.classList.add("error"); badge.innerHTML = '<span class="badge-pulse"></span> Suspendu'; }
-
-          /* Bottom sheet pop-up après 1,4 s */
-          setTimeout(() => {
-            if (overlay) overlay.hidden = false;
-            if (sheet)   sheet.hidden   = false;
-            document.body.style.overflow = "hidden";
-          }, 1400);
         }, 500);
       }
     }, pause);
@@ -403,15 +394,6 @@ $("#ad-carousel").addEventListener("mouseleave", () => {
   /* Démarre 2 s après l'arrivée sur le tableau de bord */
   setTimeout(tick, 2000);
 
-  /* Fermeture du bottom sheet */
-  function closeSheet() {
-    if (overlay) overlay.hidden = true;
-    if (sheet)   sheet.hidden   = true;
-    document.body.style.overflow = "";
-  }
-
-  if (closeBtn) closeBtn.addEventListener("click", closeSheet);
-  if (overlay)  overlay.addEventListener("click",  closeSheet);
 })();
 
 /* ---------- Tiny shake animation injected at runtime ---------- */
