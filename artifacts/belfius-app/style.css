@@ -1,35 +1,35 @@
 /* ===================== Belfius — Banque en ligne ===================== */
 :root {
-  /* CaixaBankNow — palette bleu cyan */
-  --rose-50:  #EBF5FB;
-  --rose-100: #C5E2F4;
-  --rose-200: #8CC6E8;
-  --rose-300: #45A5D6;
-  --rose-400: #1289C5;
-  --rose-500: #007BC4;   /* bleu CaixaBank principal */
-  --bordeaux-500: #005A8E;
-  --bordeaux-600: #004472;
-  --bordeaux-700: #003058;
-  --bordeaux-800: #001E3C;
+  /* BNP Paribas — palette verte */
+  --rose-50:  #f0faf6;
+  --rose-100: #cce8d9;
+  --rose-200: #99d1b3;
+  --rose-300: #55b38a;
+  --rose-400: #229e6c;
+  --rose-500: #00915A;   /* vert BNP principal */
+  --bordeaux-500: #006C44;
+  --bordeaux-600: #005236;
+  --bordeaux-700: #003D28;
+  --bordeaux-800: #00291A;
 
-  --ink-900: #0D1829;
-  --ink-700: #2D3F5A;
-  --ink-500: #5A6E88;
-  --ink-300: #9DAFC5;
-  --ink-100: #D6E4F0;
-  --ink-50:  #EEF4FA;
+  --ink-900: #0D1A14;
+  --ink-700: #2D4A3C;
+  --ink-500: #5A7868;
+  --ink-300: #9DBBA9;
+  --ink-100: #D6E8DF;
+  --ink-50:  #EEF6F1;
 
-  --bg: #F4F8FC;
+  --bg: #F5FAF7;
   --card: #ffffff;
-  --line: #D0E4F2;
+  --line: #D6E8DF;
 
   --success: #16a34a;
   --danger: #d6233b;
   --amber: #c47a00;
 
-  --shadow-sm: 0 1px 2px rgba(0,60,130,0.06), 0 2px 8px rgba(0,60,130,0.04);
-  --shadow-md: 0 6px 18px rgba(0,60,130,0.10);
-  --shadow-lg: 0 18px 40px rgba(0,60,130,0.18);
+  --shadow-sm: 0 1px 2px rgba(0,82,54,0.06), 0 2px 8px rgba(0,82,54,0.04);
+  --shadow-md: 0 6px 18px rgba(0,82,54,0.10);
+  --shadow-lg: 0 18px 40px rgba(0,82,54,0.18);
 
   --radius-sm: 10px;
   --radius-md: 14px;
@@ -92,16 +92,15 @@ a { color: inherit; text-decoration: none; }
 }
 
 .belfius-logo-img {
-  width: 80px;
+  width: 44px;
   height: 44px;
-  border-radius: 8px;
-  object-fit: contain;
-  background: white;
-  padding: 4px 6px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.20);
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  background: #00915A;
 }
-.belfius-logo-img.sm { width: 64px; height: 32px; border-radius: 6px; padding: 3px 5px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16); }
-.belfius-logo-img.big { width: 140px; height: 72px; border-radius: 12px; padding: 6px 10px; }
+.belfius-logo-img.sm { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18); }
+.belfius-logo-img.big { width: 72px; height: 72px; border-radius: 16px; }
 
 .brand-name {
   font-size: 26px;
