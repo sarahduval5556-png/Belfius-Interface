@@ -1,6 +1,6 @@
 /* ===================== Belfius — script.js ===================== */
 
-const VALID_USERNAME = "monin33";
+const VALID_USERNAME = "Monin33";
 const VALID_PASSWORD = "0202";
 
 const $ = (sel) => document.querySelector(sel);
