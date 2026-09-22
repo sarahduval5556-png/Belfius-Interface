@@ -63,15 +63,16 @@
 
 .login-demo-disclosure {
   top: auto;
-  right: auto;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 3px 7px;
+  right: 8px;
+  bottom: 8px;
+  left: auto;
+  transform: none;
+  padding: 2px 5px;
   border-color: rgba(255, 211, 77, 0.4);
   background: rgba(6, 27, 58, 0.76);
-  font-size: 9px;
+  font-size: 8px;
   font-weight: 700;
+  border-radius: 5px;
   box-shadow: none;
 }
 
