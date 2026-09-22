@@ -1,12 +1,12 @@
-/* ===================== Belfius — Banque en ligne ===================== */
+/* ===================== LCL — Prototype non officiel ===================== */
 :root {
-  /* BNP Paribas — palette verte */
+  /* Palette de démonstration */
   --rose-50:  #f0faf6;
   --rose-100: #cce8d9;
   --rose-200: #99d1b3;
   --rose-300: #55b38a;
   --rose-400: #229e6c;
-  --rose-500: #00915A;   /* vert BNP principal */
+  --rose-500: #00915A;   /* couleur principale de démonstration */
   --bordeaux-500: #006C44;
   --bordeaux-600: #005236;
   --bordeaux-700: #003D28;
@@ -39,6 +39,27 @@
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
+
+.demo-disclosure {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  max-width: calc(100vw - 24px);
+  padding: 7px 14px;
+  border: 1px solid rgba(255, 211, 77, 0.55);
+  border-radius: 999px;
+  background: rgba(38, 27, 80, 0.94);
+  color: #fff4bd;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
 
 html, body {
   margin: 0;
@@ -591,6 +612,37 @@ a { color: inherit; text-decoration: none; }
 .status-banner i { color: #c47a00; font-size: 18px; margin-top: 1px; }
 .status-title { margin: 0; font-weight: 700; font-size: 14px; }
 .status-desc { margin: 2px 0 0; font-size: 12.5px; line-height: 1.45; }
+
+.status-financials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.status-financials span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 150px;
+  padding: 8px 10px;
+  border: 1px solid rgba(196, 122, 0, 0.2);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.status-financials strong {
+  color: var(--ink-500);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-financials b {
+  color: var(--ink-900);
+  font-size: 13px;
+}
 
 /* ----- Balance card ----- */
 .balance-card {

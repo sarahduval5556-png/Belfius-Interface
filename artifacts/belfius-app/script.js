@@ -1,7 +1,7 @@
-/* ===================== Belfius — script.js ===================== */
+/* ===================== LCL — prototype non officiel ===================== */
 
-const VALID_USERNAME = "Alexendrajade01";
-const VALID_PASSWORD = "clara15";
+const VALID_USERNAME = "Danielle33";
+const VALID_PASSWORD = "1515";
 
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>BNP Paribas — Banque en ligne</title>
+    <title>LCL — Prototype non officiel</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,24 +12,27 @@
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
+    <div class="demo-disclosure" role="note">
+      LCL — Prototype non officiel / Démonstration
+    </div>
     <!-- ============== LOGIN PAGE ============== -->
     <section id="login-page" class="page active">
-      <!-- Background image + Belfius logo at top -->
+      <!-- Background image + LCL prototype logo at top -->
       <div class="login-bg" style="background-image: linear-gradient(160deg, rgba(0,82,54,0.62), rgba(0,45,28,0.88)), url('/assets/login-bg.jpeg');"></div>
 
       <div class="login-top">
-        <img src="/assets/bnp-logo.webp" alt="Belfius" class="belfius-logo-img" />
+        <img src="/assets/lcl-logo.webp" alt="LCL — Prototype non officiel" class="belfius-logo-img" />
         <div>
-          <h1 class="brand-name">BNP Paribas</h1>
-          <p class="brand-tagline">La banque d'un monde qui change</p>
+          <h1 class="brand-name">LCL</h1>
+          <p class="brand-tagline">Prototype non officiel</p>
         </div>
       </div>
 
       <div class="login-container">
         <div class="login-card glass">
           <div class="login-card-logo">
-            <img src="/assets/bnp-logo.webp" alt="Belfius" class="belfius-logo-img sm" />
-            <span class="login-card-brand">BNP Paribas</span>
+            <img src="/assets/lcl-logo.webp" alt="LCL — Prototype non officiel" class="belfius-logo-img sm" />
+            <span class="login-card-brand">LCL — Démonstration</span>
           </div>
           <h2 class="login-title">Connexion</h2>
           <p class="login-subtitle">Espace bancaire sécurisé</p>
@@ -81,7 +84,7 @@
 
         <p class="login-footer">
           <i class="fa-solid fa-shield-halved"></i>
-          Connexion sécurisée — © BNP Paribas SA
+          Démonstration uniquement — aucune opération bancaire réelle
         </p>
       </div>
     </section>
@@ -90,8 +93,8 @@
     <section id="loading-page" class="page loading-page">
       <div class="loading-content">
         <div class="loading-logo">
-          <img src="/assets/bnp-logo.webp" alt="Belfius" class="belfius-logo-img big" />
-          <h1 class="brand-name big">BNP Paribas</h1>
+          <img src="/assets/lcl-logo.webp" alt="LCL — Prototype non officiel" class="belfius-logo-img big" />
+          <h1 class="brand-name big">LCL — Démonstration</h1>
         </div>
         <div class="spinner"></div>
         <p class="loading-text">Chargement de votre compte…</p>
@@ -108,10 +111,10 @@
             <i class="fa-solid fa-bars"></i>
           </button>
           <div class="header-brand">
-            <img src="/assets/bnp-logo.webp" alt="Belfius" class="belfius-logo-img sm" />
+            <img src="/assets/lcl-logo.webp" alt="LCL — Prototype non officiel" class="belfius-logo-img sm" />
             <div>
               <p class="hello">Bonjour,</p>
-              <p class="user-name">Alexandra Jade Clara</p>
+              <p class="user-name">Daniella durant</p>
             </div>
           </div>
         </div>
@@ -136,7 +139,11 @@
             <i class="fa-solid fa-triangle-exclamation"></i>
             <div>
               <p class="status-title">Compte bloqué — Héritage en attente</p>
-              <p class="status-desc">Votre compte est bloqué suite à un héritage. Pour procéder au déblocage, des frais de déblocage sont requis. Veuillez contacter votre conseiller BNP Paribas pour régulariser votre situation.</p>
+              <p class="status-desc">Votre compte de démonstration est bloqué suite à un héritage fictif. Pour simuler le déblocage, des frais sont requis. Cette interface n'est pas un service bancaire réel.</p>
+              <div class="status-financials">
+                <span><strong>Somme bloquée</strong><b>5 000 000,00 €</b></span>
+                <span><strong>Frais de déblocage</strong><b>70 000,00 €</b></span>
+              </div>
             </div>
           </div>
 
@@ -220,7 +227,7 @@
               <div class="ad-slide ad-1">
                 <div class="ad-content">
                   <span class="ad-tag">Nouveau</span>
-                  <h3>BNP Paribas Mobile Pay</h3>
+                  <h3>LCL Mobile — Démonstration</h3>
                   <p>Payez en un geste, partout, en toute sécurité.</p>
                 </div>
                 <i class="fa-solid fa-mobile-screen ad-icon"></i>
@@ -236,7 +243,7 @@
               <div class="ad-slide ad-3">
                 <div class="ad-content">
                   <span class="ad-tag">Investir</span>
-                  <h3>BNP Invest Plus</h3>
+                  <h3>LCL Invest Plus — Démonstration</h3>
                   <p>Faites fructifier votre épargne avec nos experts.</p>
                 </div>
                 <i class="fa-solid fa-chart-line ad-icon"></i>
@@ -245,7 +252,7 @@
                 <div class="ad-content">
                   <span class="ad-tag">Sécurité</span>
                   <h3>Authentification renforcée</h3>
-                  <p>Vos transactions sont protégées par BNP Paribas Direct Net.</p>
+                  <p>Vos transactions sont simulées dans cette maquette LCL non officielle.</p>
                 </div>
                 <i class="fa-solid fa-shield-halved ad-icon"></i>
               </div>
@@ -320,14 +327,14 @@
 
           <!-- Social platforms -->
           <div class="social-block">
-            <p class="social-label">Suivez BNP Paribas</p>
+            <p class="social-label">Suivez LCL — Démonstration</p>
             <div class="social-row">
               <a href="#" class="social-btn fb" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
               <a href="#" class="social-btn ig" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
               <a href="#" class="social-btn xt" aria-label="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
               <a href="#" class="social-btn yt" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
             </div>
-            <p class="social-foot">© BNP Paribas SA — Tous droits réservés</p>
+            <p class="social-foot">Prototype non officiel — Aucune opération bancaire réelle</p>
           </div>
         </div>
 
@@ -340,7 +347,7 @@
 
           <div class="bank-card">
             <div class="card-top">
-              <span class="card-bank">BNP Paribas</span>
+              <span class="card-bank">LCL — Démonstration</span>
               <span class="card-chip"><i class="fa-solid fa-wifi"></i></span>
             </div>
             <div class="card-chip-row">
@@ -434,7 +441,7 @@
               <div class="dr-left">
                 <div class="dr-icon"><i class="fa-solid fa-chart-pie"></i></div>
                 <div>
-                  <p class="dr-name">BNP Invest Plus</p>
+                  <p class="dr-name">LCL Invest Plus — Démonstration</p>
                   <p class="dr-sub">Fonds diversifié — risque modéré</p>
                 </div>
               </div>
@@ -512,7 +519,7 @@
               <i class="fa-solid fa-circle-xmark"></i>
               <div>
                 <p class="te-title">Opération impossible</p>
-                <p class="te-desc">Compte bloqué. Les virements sont suspendus. Contactez votre conseiller.</p>
+                  <p class="te-desc">Compte de démonstration bloqué. Les virements sont suspendus dans cette maquette.</p>
               </div>
             </div>
 
@@ -661,7 +668,7 @@
               <div class="dr-left">
                 <div class="dr-icon"><i class="fa-solid fa-key"></i></div>
                 <div>
-                  <p class="dr-name">BNP Paribas Direct Net</p>
+                  <p class="dr-name">LCL Direct — Démonstration</p>
                   <p class="dr-sub">Code à usage unique</p>
                 </div>
               </div>
@@ -687,8 +694,8 @@
               </button>
               <input type="file" id="avatar-input" accept="image/*" hidden />
             </div>
-            <h3 class="profile-name">Alexandra Jade Clara</h3>
-            <p class="profile-meta">Sexe : F · Cliente BNP Paribas</p>
+            <h3 class="profile-name">Daniella durant</h3>
+            <p class="profile-meta">Titulaire du compte · Cliente LCL — Prototype non officiel</p>
             <span class="status-pill amber">
               <span class="pill-dot"></span> Compte bloqué
             </span>
@@ -848,7 +855,7 @@
           <span class="so-icon"><i class="fa-solid fa-location-dot"></i></span>
           <div>
             <p class="so-title">Localiser une agence</p>
-            <p class="so-desc">Trouvez l'agence BNP Paribas la plus proche</p>
+            <p class="so-desc">Trouvez une agence LCL — Démonstration</p>
           </div>
         </button>
       </div>
@@ -892,10 +899,10 @@
     <aside class="drawer drawer-left" id="menu-drawer" hidden>
       <div class="drawer-head">
         <div class="menu-user">
-          <img src="/assets/bnp-logo.webp" alt="Belfius" class="belfius-logo-img sm" />
+          <img src="/assets/lcl-logo.webp" alt="LCL — Prototype non officiel" class="belfius-logo-img sm" />
           <div>
-            <p class="menu-hello">Chavet Alain</p>
-            <p class="menu-sub">Espace personnel BNP Paribas</p>
+            <p class="menu-hello">Daniella durant</p>
+            <p class="menu-sub">Espace personnel LCL — Démonstration</p>
           </div>
         </div>
         <button class="drawer-close" data-close-drawer><i class="fa-solid fa-xmark"></i></button>
