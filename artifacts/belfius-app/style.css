@@ -67,12 +67,12 @@
   bottom: 8px;
   left: auto;
   transform: none;
-  padding: 2px 5px;
-  border-color: rgba(255, 211, 77, 0.4);
-  background: rgba(6, 27, 58, 0.76);
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #A8B8CC;
   font-size: 8px;
   font-weight: 700;
-  border-radius: 5px;
   box-shadow: none;
 }
 
