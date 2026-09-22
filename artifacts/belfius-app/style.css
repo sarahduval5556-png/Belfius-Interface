@@ -62,7 +62,16 @@
 }
 
 .login-demo-disclosure {
-  background: rgba(6, 27, 58, 0.94);
+  top: 12px;
+  right: 12px;
+  left: auto;
+  transform: none;
+  padding: 4px 8px;
+  border-color: rgba(255, 211, 77, 0.4);
+  background: rgba(6, 27, 58, 0.76);
+  font-size: 10px;
+  font-weight: 700;
+  box-shadow: none;
 }
 
 .dashboard-demo-disclosure {
