@@ -1,35 +1,35 @@
 /* ===================== LCL — Prototype non officiel ===================== */
 :root {
-  /* Palette de démonstration */
-  --rose-50:  #f0faf6;
-  --rose-100: #cce8d9;
-  --rose-200: #99d1b3;
-  --rose-300: #55b38a;
-  --rose-400: #229e6c;
-  --rose-500: #00915A;   /* couleur principale de démonstration */
-  --bordeaux-500: #006C44;
-  --bordeaux-600: #005236;
-  --bordeaux-700: #003D28;
-  --bordeaux-800: #00291A;
+  /* Charte LCL de démonstration : bleu profond, jaune vif et blanc */
+  --rose-50:  #F1F6FC;
+  --rose-100: #DCE8F5;
+  --rose-200: #B9CDE5;
+  --rose-300: #FFE58A;
+  --rose-400: #FFDD4D;
+  --rose-500: #FFD200;   /* jaune LCL — accent et CTA */
+  --bordeaux-500: #1B4D8C;
+  --bordeaux-600: #0E376B;
+  --bordeaux-700: #092A54;
+  --bordeaux-800: #061B3A;
 
-  --ink-900: #0D1A14;
-  --ink-700: #2D4A3C;
-  --ink-500: #5A7868;
-  --ink-300: #9DBBA9;
-  --ink-100: #D6E8DF;
-  --ink-50:  #EEF6F1;
+  --ink-900: #10233F;
+  --ink-700: #29466E;
+  --ink-500: #607A9B;
+  --ink-300: #A8B8CC;
+  --ink-100: #DDE7F2;
+  --ink-50:  #F4F8FC;
 
-  --bg: #F5FAF7;
+  --bg: #F5F8FC;
   --card: #ffffff;
-  --line: #D6E8DF;
+  --line: #DDE7F2;
 
   --success: #16a34a;
   --danger: #d6233b;
-  --amber: #c47a00;
+  --amber: #A96F00;
 
-  --shadow-sm: 0 1px 2px rgba(0,82,54,0.06), 0 2px 8px rgba(0,82,54,0.04);
-  --shadow-md: 0 6px 18px rgba(0,82,54,0.10);
-  --shadow-lg: 0 18px 40px rgba(0,82,54,0.18);
+  --shadow-sm: 0 1px 2px rgba(6,27,58,0.06), 0 2px 8px rgba(6,27,58,0.04);
+  --shadow-md: 0 6px 18px rgba(6,27,58,0.10);
+  --shadow-lg: 0 18px 40px rgba(6,27,58,0.18);
 
   --radius-sm: 10px;
   --radius-md: 14px;
@@ -118,7 +118,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 10px;
   object-fit: cover;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-  background: #00915A;
+  background: var(--bordeaux-800);
 }
 .belfius-logo-img.sm { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18); }
 .belfius-logo-img.big { width: 72px; height: 72px; border-radius: 16px; }
@@ -330,18 +330,18 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   gap: 10px;
   width: 100%;
-  background: linear-gradient(135deg, var(--rose-500), var(--bordeaux-500));
-  color: white;
+  background: linear-gradient(135deg, var(--rose-500), #E7B600);
+  color: var(--bordeaux-800);
   border: none;
   padding: 14px 20px;
   border-radius: var(--radius-md);
   font-weight: 600;
   font-size: 15px;
   letter-spacing: 0.01em;
-  box-shadow: 0 8px 20px rgba(160, 26, 60, 0.30);
+  box-shadow: 0 8px 20px rgba(169, 111, 0, 0.30);
   transition: transform 0.1s, box-shadow 0.15s, opacity 0.15s;
 }
-.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 26px rgba(160, 26, 60, 0.36); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 26px rgba(169, 111, 0, 0.36); }
 .btn-primary:active { transform: translateY(0); }
 .btn-block { width: 100%; }
 
@@ -413,7 +413,7 @@ a { color: inherit; text-decoration: none; }
 /* ===================== LOADING ===================== */
 .loading-page {
   background:
-    radial-gradient(circle at 50% 30%, rgba(255, 79, 138, 0.35), transparent 50%),
+    radial-gradient(circle at 50% 30%, rgba(255, 210, 0, 0.22), transparent 50%),
     linear-gradient(160deg, var(--bordeaux-700), var(--bordeaux-800));
   color: white;
 }
@@ -602,14 +602,14 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   gap: 12px;
   align-items: flex-start;
-  background: linear-gradient(135deg, #fff5dc, #ffe7c2);
-  border: 1px solid #ffd58a;
-  color: #6a4500;
+  background: linear-gradient(135deg, #FFFBE8, #FFF1B8);
+  border: 1px solid #E8C94F;
+  color: #5E4A00;
   border-radius: var(--radius-md);
   padding: 12px 14px;
   margin-bottom: 14px;
 }
-.status-banner i { color: #c47a00; font-size: 18px; margin-top: 1px; }
+.status-banner i { color: var(--amber); font-size: 18px; margin-top: 1px; }
 .status-title { margin: 0; font-weight: 700; font-size: 14px; }
 .status-desc { margin: 2px 0 0; font-size: 12.5px; line-height: 1.45; }
 
@@ -626,7 +626,7 @@ a { color: inherit; text-decoration: none; }
   gap: 2px;
   min-width: 150px;
   padding: 8px 10px;
-  border: 1px solid rgba(196, 122, 0, 0.2);
+  border: 1px solid rgba(169, 111, 0, 0.2);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.58);
 }
@@ -648,7 +648,7 @@ a { color: inherit; text-decoration: none; }
 .balance-card {
   position: relative;
   background:
-    radial-gradient(circle at 100% 0%, rgba(255, 127, 168, 0.45), transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(255, 210, 0, 0.25), transparent 55%),
     linear-gradient(135deg, var(--bordeaux-600), var(--bordeaux-800));
   color: white;
   border-radius: var(--radius-lg);
