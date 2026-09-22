@@ -61,6 +61,14 @@
   white-space: nowrap;
 }
 
+.login-demo-disclosure {
+  background: rgba(6, 27, 58, 0.94);
+}
+
+.dashboard-demo-disclosure {
+  background: rgba(6, 27, 58, 0.96);
+}
+
 html, body {
   margin: 0;
   padding: 0;
